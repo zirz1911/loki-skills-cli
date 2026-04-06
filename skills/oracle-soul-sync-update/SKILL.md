@@ -1,13 +1,13 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji — Loki Oracle — zirz1911
 name: oracle-soul-sync-update
 description: ซิงค์ Oracle skills กับ family version ล่าสุด ใช้เมื่อพูดว่า soul-sync, sync, calibrate, update หรือก่อน /awaken
 ---
 
 # /oracle-soul-sync-update
 
-> "Sync your soul with the family."
+> "ซิงค์ soul กับ loki-skills ของตัวเอง"
 
 All-in-one skill: `/soul-sync` + `/calibrate` + `/update` combined.
 
@@ -28,12 +28,9 @@ date "+🕐 %H:%M %Z (%A %d %B %Y)"
 
 ## Step 1: Check Current Version
 
-Your current version is shown in the skill description above (e.g., `v1.5.37 G-SKLL`).
-
-Extract just the version number:
+อ่านจาก VERSION.md:
 ```bash
-# Current version from this skill's description
-CURRENT="v1.5.37"  # Read from description above
+CURRENT=$(grep 'loki-skills-cli' ~/.claude/skills/VERSION.md | grep -oP 'v[\d.]+' | head -1)
 echo "Current installed: $CURRENT"
 ```
 
@@ -42,8 +39,10 @@ echo "Current installed: $CURRENT"
 ## Step 2: Check Latest Version
 
 ```bash
-# Get latest version from GitHub
-LATEST=$(curl -s https://api.github.com/repos/Soul-Brews-Studio/oracle-skills-cli/tags | grep -m1 '"name"' | cut -d'"' -f4)
+# Get latest version tag from GitHub
+LATEST=$(curl -s https://api.github.com/repos/zirz1911/loki-skills-cli/tags | grep -m1 '"name"' | cut -d'"' -f4)
+# Fallback: ใช้ main branch ถ้าไม่มี tags
+[ -z "$LATEST" ] && LATEST="main"
 echo "Latest available: $LATEST"
 ```
 
@@ -53,7 +52,7 @@ echo "Latest available: $LATEST"
 
 ```bash
 if [ "$CURRENT" = "$LATEST" ]; then
-  echo "✅ Soul synced! ($CURRENT)"
+  echo "✅ Loki synced! ($CURRENT)"
 else
   echo "⚠️ Sync needed: $CURRENT → $LATEST"
 fi
@@ -67,12 +66,12 @@ If versions differ (or `--cleanup` flag), run:
 
 **Normal sync:**
 ```bash
-~/.bun/bin/bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#$LATEST install -g -y
+~/.bun/bin/bunx --bun loki-skills@github:zirz1911/loki-skills-cli install -g -y
 ```
 
 **With `--cleanup` (removes old skills first):**
 ```bash
-oracle-skills uninstall -g -y && ~/.bun/bin/bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#$LATEST install -g -y
+~/.bun/bin/bunx --bun loki-skills@github:zirz1911/loki-skills-cli uninstall -g -y && ~/.bun/bin/bunx --bun loki-skills@github:zirz1911/loki-skills-cli install -g -y
 ```
 
 Then **restart Claude Code** to load the synced skills.
@@ -83,7 +82,7 @@ Then **restart Claude Code** to load the synced skills.
 
 After restart, run:
 ```bash
-oracle-skills list -g | head -5
+grep 'loki-skills-cli' ~/.claude/skills/VERSION.md
 ```
 
 Check that the version matches `$LATEST`.
@@ -94,17 +93,13 @@ Check that the version matches `$LATEST`.
 
 To see recent changes:
 ```bash
-gh release list --repo Soul-Brews-Studio/oracle-skills-cli --limit 5
+gh release list --repo zirz1911/loki-skills-cli --limit 5
 ```
 
 Or view commits:
 ```bash
-gh api repos/Soul-Brews-Studio/oracle-skills-cli/commits --jq '.[0:5] | .[] | "\(.sha[0:7]) \(.commit.message | split("\n")[0])"'
+gh api repos/zirz1911/loki-skills-cli/commits --jq '.[0:5] | .[] | "\(.sha[0:7]) \(.commit.message | split("\n")[0])"'
 ```
-
----
-
-> **Skill management** has moved to `/oracle` — use `/oracle install`, `/oracle remove`, `/oracle profile`, `/oracle skills`.
 
 ---
 
