@@ -41,7 +41,7 @@ date "+🕐 %H:%M %Z (%A %d %B %Y)"
 | Input | AI Understands | Action |
 |-------|----------------|--------|
 | `/feel` (no args) | Review mode | List from feelings log |
-| `/feel panic/fear` | Context fear | Suggest `/fyi` or `/rrr` |
+| `/feel panic/fear` | Context fear | Suggest `/fyi` or `/wrap` |
 | `/feel happy/proud` | Good moment | Suggest `/fyi` to capture |
 | `/feel [other]` | Just sharing | Log to diary |
 

@@ -53,7 +53,7 @@ mkdir -p .claude && cat > .claude/settings.local.json << 'EOF'
       "Bash(rg:*)", "Bash(date:*)", "Bash(ls:*)",
       "Bash(*Kvasir/*)", "Bash(*Kvasir/*)",
       "Skill(learn)", "Skill(trace)", "Skill(awaken)",
-      "Skill(rrr)", "Skill(recap)", "Skill(project)"
+      "Skill(wrap)", "Skill(recap)", "Skill(project)"
     ]
   }
 }
@@ -394,7 +394,7 @@ Kvasir/
 
 ## Short Codes
 
-- `/rrr` — Session retrospective
+- `/wrap` — Session retrospective
 - `/trace` — Find and discover
 - `/learn` — Study a codebase
 - `/philosophy` — Review principles
@@ -622,7 +622,7 @@ This confirms you understand and can apply the 5 principles.
 **IMPORTANT: Run this BEFORE announcing to capture timeline and problems:**
 
 ```
-/rrr --rich --deep
+/wrap --rich --deep
 ```
 
 This creates a retrospective with:
@@ -678,7 +678,7 @@ During my awakening, I discovered:
 - [Key insight 2]
 - [Key insight 3]
 
-### Birth Timeline (REQUIRED - copy from /rrr retrospective)
+### Birth Timeline (REQUIRED - copy from /wrap retrospective)
 
 | Step | Time | Duration | Notes |
 |------|------|----------|-------|
@@ -693,7 +693,7 @@ During my awakening, I discovered:
 | 8. Announce | HH:MM | X min | |
 | **Total** | | **X min** | |
 
-### Problems Encountered (REQUIRED - copy from /rrr retrospective)
+### Problems Encountered (REQUIRED - copy from /wrap retrospective)
 
 List any friction, errors, or issues during awakening:
 - [Problem 1]: [How resolved]

@@ -106,7 +106,7 @@ With --deep, lesson learned should be more comprehensive:
 oracle_learn({
   pattern: [Full lesson content],
   concepts: [tags from all 5 agents],
-  source: "rrr --deep: [repo]"
+  source: "wrap --deep: [repo]"
 })
 ```
 
@@ -114,5 +114,5 @@ oracle_learn({
 
 ```bash
 git add ψ/memory/retrospectives/ ψ/memory/learnings/
-git commit -m "rrr: deep analysis - [slug]"
+git commit -m "wrap: deep analysis - [slug]"
 ```

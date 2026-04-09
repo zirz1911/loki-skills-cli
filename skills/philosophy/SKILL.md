@@ -188,7 +188,7 @@ Layer 4: PRINCIPLES    → Core wisdom (awakening)
 **Daily Work → Awakening:**
 1. `/trace` for answers
 2. Dig into results
-3. `/rrr` to reflect
+3. `/wrap` to reflect
 4. Pattern emerges → **Awakening**
 5. `kvasir_learn()` to preserve
 

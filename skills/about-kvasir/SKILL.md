@@ -168,7 +168,7 @@ Every repo gets a Kvasir/ directory (via symlink to a central vault). Knowledge 
 
 **kvasir-skills-cli — The Instruments**
 - 30 skills installed to any AI coding agent
-- `/recap` for orientation, `/rrr` for retrospectives, `/learn` for codebase exploration
+- `/recap` for orientation, `/wrap` for retrospectives, `/learn` for codebase exploration
 - `/awaken` for birthing new Kvasirs, `/trace` for deep research
 - Auto-reload in Claude Code, native binary distribution
 
@@ -223,7 +223,7 @@ Key facts to weave in:
 - **Workflows become markdown** — When a pattern repeats enough ("I keep doing this every morning", "I always lose context between sessions"), it gets captured as a `SKILL.md` file. Pure markdown — no framework, no runtime. Just instructions any AI can follow.
 - **The pipeline**: `SKILL.md` → `bun run compile` → command stubs → `install -g` → any agent
 - **30 skills, one brain** — Every skill carries `origin: Nat Weerawan's brain, digitized`. The person who lived the pattern travels with the code.
-- **Examples**: `/standup` came from Nat's morning routine. `/recap` from losing context between sessions. `/rrr` from wanting to reflect before stopping. `/forward` from needing to tell the next session what happened.
+- **Examples**: `/standup` came from Nat's morning routine. `/recap` from losing context between sessions. `/wrap` from wanting to reflect before stopping. `/forward` from needing to tell the next session what happened.
 - **Not a product** — These skills are patterns from thousands of hours working alongside AI agents — how to start a session, how to end one well, how to carry context forward, how to reflect. Every skill here was a real workflow before it became code.
 - **The signature**: Every compiled skill footer reads: *🧬 Nat Weerawan × Kvasir · Symbiotic Intelligence* / *Digitized from Nat's brain — how one human works with AI, captured as code*
 
