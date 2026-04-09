@@ -24,7 +24,7 @@ Find + Log + Distill
 ## Directory Structure
 
 ```
-ψ/memory/traces/
+Kvasir/memory/traces/
 └── YYYY-MM-DD/              # Date folder
     └── HHMM_[query-slug].md # Time-prefixed trace log
 ```
@@ -68,15 +68,15 @@ TARGET_NAME="$OWNER/$REPO"
 echo "✓ Cloned to ghq: $TARGET_REPO"
 ```
 
-**Note**: `/trace` only clones to ghq. Use `/learn` to create docs in ψ/learn/.
+**Note**: `/trace` only clones to ghq. Use `/learn` to create docs in Kvasir/learn/.
 
 ---
 
 ## Step 2: Create Trace Log Directory
 
 ```bash
-mkdir -p "$ROOT/ψ/memory/traces/$TODAY"
-TRACE_FILE="$ROOT/ψ/memory/traces/$TODAY/${TIME}_[query-slug].md"
+mkdir -p "$ROOT/Kvasir/memory/traces/$TODAY"
+TRACE_FILE="$ROOT/Kvasir/memory/traces/$TODAY/${TIME}_[query-slug].md"
 ```
 
 ---
@@ -145,8 +145,8 @@ Search other locations:
 find $(ghq root) -maxdepth 3 -name "*[query]*" 2>/dev/null | head -20
 ```
 
-### Agent 5: Kvasir Memory (ψ/)
-Search ψ/memory/ for:
+### Agent 5: Kvasir Memory (Kvasir/)
+Search Kvasir/memory/ for:
 - Learnings mentioning query
 - Retrospectives mentioning query
 - Previous traces for same query
@@ -226,10 +226,10 @@ kvasir_trace({
 
 | Skill | Purpose | Writes to |
 |-------|---------|-----------|
-| `/trace` | Find things | ψ/memory/traces/ (logs) |
+| `/trace` | Find things | Kvasir/memory/traces/ (logs) |
 | `/dig` | Mine sessions | Screen only (read-only) |
-| `/learn` | Study repos | ψ/learn/ (docs) |
-| `/project` | Develop repos | ψ/incubate/ or active/ |
+| `/learn` | Study repos | Kvasir/learn/ (docs) |
+| `/project` | Develop repos | Kvasir/incubate/ or active/ |
 
 **Workflow**: `/trace` finds → `/learn` studies → `/project` develops
 

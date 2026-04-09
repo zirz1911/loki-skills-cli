@@ -49,7 +49,7 @@ date "+🕐 %H:%M %Z (%A %d %B %Y)"
 
 ## Mode 1: No Arguments → List
 
-Read `ψ/memory/logs/feelings/` and show summary:
+Read `Kvasir/memory/logs/feelings/` and show summary:
 
 ```markdown
 ## /feel - Recent Moods
@@ -83,7 +83,7 @@ Extract from ARGUMENTS:
 
 ### Step 3: Create log entry
 
-Write to `ψ/memory/logs/feels.log` (append):
+Write to `Kvasir/memory/logs/feels.log` (append):
 
 ```
 YYYY-MM-DD HH:MM | [mood] | energy:[N] | trigger:[x] | [optional note]
@@ -105,7 +105,7 @@ Example:
 **Time**: 22:33
 
 ---
-Logged to ψ/memory/logs/feels.log
+Logged to Kvasir/memory/logs/feels.log
 ```
 
 ---

@@ -28,13 +28,13 @@ Create context for next session, then enter plan mode to define next steps.
 
 Resolve vault path first:
 ```bash
-PSI=$(readlink -f ψ 2>/dev/null || echo "ψ")
+PSI=$(readlink -f Kvasir 2>/dev/null || echo "Kvasir")
 ```
 
 Write to: `$PSI/inbox/handoff/YYYY-MM-DD_HH-MM_slug.md`
 
-**IMPORTANT**: Always use the resolved `$PSI` path, never the `ψ/` symlink directly.
-This ensures handoffs go to the project's vault (wherever ψ points).
+**IMPORTANT**: Always use the resolved `$PSI` path, never the `Kvasir/` symlink directly.
+This ensures handoffs go to the project's vault (wherever Kvasir points).
 Do NOT `git add` vault files — they are shared state, not committed to repos.
 
 ```markdown

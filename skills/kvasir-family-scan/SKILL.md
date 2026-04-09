@@ -91,7 +91,7 @@ Shows:
 Highlight:
 - Repos with outdated skills versions
 - Repos with no recent sessions (stale)
-- Repos missing ψ/ (partial Kvasir setup)
+- Repos missing Kvasir/ (partial Kvasir setup)
 
 ---
 
@@ -187,8 +187,8 @@ Each welcome must:
 Save drafts for review before posting:
 
 ```bash
-# Save to ψ/inbox/handoff/ and /tmp/
-cat drafts > ψ/inbox/handoff/welcome-drafts.md
+# Save to Kvasir/inbox/handoff/ and /tmp/
+cat drafts > Kvasir/inbox/handoff/welcome-drafts.md
 ```
 
 ### Step 5: Post

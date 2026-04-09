@@ -11,7 +11,7 @@ Track and manage external repos: Learn (study) | Incubate (develop)
 
 ## Golden Rule
 
-**ghq owns the clone → ψ/ owns the symlink**
+**ghq owns the clone → Kvasir/ owns the symlink**
 
 Never copy. Always symlink. One source of truth.
 
@@ -35,11 +35,11 @@ ghq get -u https://github.com/owner/repo
 
 # 2. Create org/repo symlink structure
 GHQ_ROOT=$(ghq root)
-mkdir -p ψ/learn/owner
-ln -sf "$GHQ_ROOT/github.com/owner/repo" ψ/learn/owner/repo
+mkdir -p Kvasir/learn/owner
+ln -sf "$GHQ_ROOT/github.com/owner/repo" Kvasir/learn/owner/repo
 ```
 
-**Output**: "✓ Linked [repo] to ψ/learn/owner/repo"
+**Output**: "✓ Linked [repo] to Kvasir/learn/owner/repo"
 
 ### incubate [url|slug] [--offload|--contribute|--flash]
 
@@ -49,11 +49,11 @@ Clone repo for **active development** with optional workflow flags.
 # Same flow, different target
 ghq get -u https://github.com/owner/repo
 GHQ_ROOT=$(ghq root)
-mkdir -p ψ/incubate/owner
-ln -sf "$GHQ_ROOT/github.com/owner/repo" ψ/incubate/owner/repo
+mkdir -p Kvasir/incubate/owner
+ln -sf "$GHQ_ROOT/github.com/owner/repo" Kvasir/incubate/owner/repo
 ```
 
-**Output**: "✓ Linked [repo] to ψ/incubate/owner/repo"
+**Output**: "✓ Linked [repo] to Kvasir/incubate/owner/repo"
 
 #### Workflow Flags
 
@@ -69,8 +69,8 @@ ln -sf "$GHQ_ROOT/github.com/owner/repo" ψ/incubate/owner/repo
 Remove symlink after work is done (manual trigger):
 
 ```bash
-unlink ψ/incubate/owner/repo
-rmdir ψ/incubate/owner 2>/dev/null
+unlink Kvasir/incubate/owner/repo
+rmdir Kvasir/incubate/owner 2>/dev/null
 # ghq clone preserved for future use
 ```
 
@@ -80,13 +80,13 @@ For multi-feature contributions over days/weeks. Offload when ALL features are d
 
 ```bash
 # 1. Work on multiple features/fixes over time
-git -C ψ/incubate/owner/repo checkout -b feat/feature-1
+git -C Kvasir/incubate/owner/repo checkout -b feat/feature-1
 # ... work, commit, push, PR ...
-git -C ψ/incubate/owner/repo checkout -b feat/feature-2
+git -C Kvasir/incubate/owner/repo checkout -b feat/feature-2
 # ... work, commit, push, PR ...
 
 # 2. When all done, offload (ghq kept for PR feedback)
-unlink ψ/incubate/owner/repo
+unlink Kvasir/incubate/owner/repo
 ```
 
 **Use case**: Extended contribution period. Keep ghq for addressing PR reviews.
@@ -100,7 +100,7 @@ Complete contribution cycle with full cleanup:
     ↓
 1. gh issue create → #N (document intent)
     ↓
-2. ghq get → symlink to ψ/incubate/
+2. ghq get → symlink to Kvasir/incubate/
     ↓
 3. git checkout -b issue-N-description
     ↓
@@ -126,7 +126,7 @@ Search for project across all locations:
 ghq list | grep -i "query"
 
 # Search learn/incubate symlinks (org/repo structure)
-find ψ/learn ψ/incubate -type l 2>/dev/null | grep -i "query"
+find Kvasir/learn Kvasir/incubate -type l 2>/dev/null | grep -i "query"
 ```
 
 **Output**: List matches with their ghq paths
@@ -137,15 +137,15 @@ Show all tracked projects:
 
 ```bash
 echo "📚 Learn"
-find ψ/learn -type l 2>/dev/null | while read link; do
+find Kvasir/learn -type l 2>/dev/null | while read link; do
   target=$(readlink "$link")
-  echo "  ${link#ψ/learn/} → $target"
+  echo "  ${link#Kvasir/learn/} → $target"
 done
 
 echo "🌱 Incubate"
-find ψ/incubate -type l 2>/dev/null | while read link; do
+find Kvasir/incubate -type l 2>/dev/null | while read link; do
   target=$(readlink "$link")
-  echo "  ${link#ψ/incubate/} → $target"
+  echo "  ${link#Kvasir/incubate/} → $target"
 done
 
 echo "🏠 External (ghq)"
@@ -155,7 +155,7 @@ ghq list | grep -v "laris-co/Nat-s-Agents" | head -10
 ## Directory Structure
 
 ```
-ψ/
+Kvasir/
 ├── learn/owner/repo     → ~/Code/github.com/owner/repo  (symlink)
 └── incubate/owner/repo  → ~/Code/github.com/owner/repo  (symlink)
 
@@ -169,7 +169,7 @@ When listing, verify symlinks are valid:
 
 ```bash
 # Check for broken symlinks
-find ψ/learn ψ/incubate -type l ! -exec test -e {} \; -print 2>/dev/null
+find Kvasir/learn Kvasir/incubate -type l ! -exec test -e {} \; -print 2>/dev/null
 ```
 
 If broken: `ghq get -u [url]` to restore source.
@@ -180,8 +180,8 @@ If broken: `ghq get -u [url]` to restore source.
 # User shares URL to study
 User: "I want to learn from https://github.com/SawyerHood/dev-browser"
 → ghq get -u https://github.com/SawyerHood/dev-browser
-→ mkdir -p ψ/learn/SawyerHood
-→ ln -sf ~/Code/github.com/SawyerHood/dev-browser ψ/learn/SawyerHood/dev-browser
+→ mkdir -p Kvasir/learn/SawyerHood
+→ ln -sf ~/Code/github.com/SawyerHood/dev-browser Kvasir/learn/SawyerHood/dev-browser
 
 # User wants to develop long-term
 User: "I want to work on claude-mem"
@@ -209,8 +209,8 @@ User: "Quick README fix on kvasir-skills-cli"
 
 | ❌ Wrong | ✅ Right |
 |----------|----------|
-| `git clone` directly to ψ/ | `ghq get` then symlink |
-| Flat: `ψ/learn/repo-name` | Org structure: `ψ/learn/owner/repo` |
+| `git clone` directly to Kvasir/ | `ghq get` then symlink |
+| Flat: `Kvasir/learn/repo-name` | Org structure: `Kvasir/learn/owner/repo` |
 | Copy files | Symlink always |
 | Manual clone outside ghq | Everything through ghq |
 
@@ -218,16 +218,16 @@ User: "Quick README fix on kvasir-skills-cli"
 
 ```bash
 # Add to learn
-ghq get -u URL && mkdir -p ψ/learn/owner && ln -sf "$(ghq root)/github.com/owner/repo" ψ/learn/owner/repo
+ghq get -u URL && mkdir -p Kvasir/learn/owner && ln -sf "$(ghq root)/github.com/owner/repo" Kvasir/learn/owner/repo
 
 # Add to incubate
-ghq get -u URL && mkdir -p ψ/incubate/owner && ln -sf "$(ghq root)/github.com/owner/repo" ψ/incubate/owner/repo
+ghq get -u URL && mkdir -p Kvasir/incubate/owner && ln -sf "$(ghq root)/github.com/owner/repo" Kvasir/incubate/owner/repo
 
 # Offload (remove symlink only)
-unlink ψ/incubate/owner/repo && rmdir ψ/incubate/owner 2>/dev/null
+unlink Kvasir/incubate/owner/repo && rmdir Kvasir/incubate/owner 2>/dev/null
 
 # Offload + purge (remove symlink AND ghq clone)
-unlink ψ/incubate/owner/repo && rm -rf "$(ghq root)/github.com/owner/repo"
+unlink Kvasir/incubate/owner/repo && rm -rf "$(ghq root)/github.com/owner/repo"
 
 # Update source
 ghq get -u URL

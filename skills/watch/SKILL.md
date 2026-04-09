@@ -26,7 +26,7 @@ Learn from YouTube videos by sending to Gemini for transcription, then indexing 
 |--------|---------|
 | `scripts/get-metadata.ts <url>` | Get title, duration, channel (JSON) |
 | `scripts/get-cc.ts <url> [lang]` | Get captions in SRT format |
-| `scripts/save-learning.ts <title> <url> <id> <transcript> [cc]` | Save to ψ/memory/learnings/ |
+| `scripts/save-learning.ts <title> <url> <id> <transcript> [cc]` | Save to Kvasir/memory/learnings/ |
 
 ## Workflow
 
@@ -79,7 +79,7 @@ Once you have the Gemini transcription, save it:
 bun src/skills/watch/scripts/save-learning.ts "$TITLE" "$URL" "$VIDEO_ID" "$TRANSCRIPT" "$CC_TEXT"
 ```
 
-Or manually create a learning file at `ψ/memory/learnings/YYYY-MM-DD_video-slug.md`.
+Or manually create a learning file at `Kvasir/memory/learnings/YYYY-MM-DD_video-slug.md`.
 
 ### Step 4: Index to Kvasir
 
@@ -103,7 +103,7 @@ kvasir_learn({
 [From Gemini response]
 
 ### Saved To
-- Learning: ψ/memory/learnings/[DATE]_[SLUG].md
+- Learning: Kvasir/memory/learnings/[DATE]_[SLUG].md
 - Kvasir: Indexed ✓
 
 ### Quick Access

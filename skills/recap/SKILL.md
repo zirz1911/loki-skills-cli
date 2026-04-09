@@ -47,12 +47,12 @@ Check what's appropriate from git status:
 
 Only read what matters — don't dump 10 commits if status is clean.
 
-### Step 3: Read latest ψ/ brain files
+### Step 3: Read latest Kvasir/ brain files
 
-Sort all ψ/ files by modification time, read the most recent:
+Sort all Kvasir/ files by modification time, read the most recent:
 
 ```bash
-find ψ/ -name '*.md' -not -name 'CLAUDE.md' -not -name 'README.md' -not -name '.gitkeep' 2>/dev/null | xargs ls -t 2>/dev/null | head -5
+find Kvasir/ -name '*.md' -not -name 'CLAUDE.md' -not -name 'README.md' -not -name '.gitkeep' 2>/dev/null | xargs ls -t 2>/dev/null | head -5
 ```
 
 Read those top 5 files. This recovers the same context `/compact` restores — handoffs, retros, learnings, drafts, whatever was touched last.
@@ -75,8 +75,8 @@ Need more? `/dig 5` or `/dig --timeline`.
 Also check pulse context:
 
 ```bash
-cat ψ/data/pulse/project.json 2>/dev/null
-cat ψ/data/pulse/heartbeat.json 2>/dev/null
+cat Kvasir/data/pulse/project.json 2>/dev/null
+cat Kvasir/data/pulse/heartbeat.json 2>/dev/null
 ```
 
 If pulse data exists, add one line after the script output:
@@ -178,9 +178,9 @@ Same as `--now` but adds bigger picture context.
 
 ```
 1. Current session from AI memory
-2. Read latest handoff: ls -t ψ/inbox/handoff/*.md | head -1
+2. Read latest handoff: ls -t Kvasir/inbox/handoff/*.md | head -1
 3. Git status: git status --short
-4. Tracks: cat ψ/inbox/tracks/INDEX.md 2>/dev/null
+4. Tracks: cat Kvasir/inbox/tracks/INDEX.md 2>/dev/null
 ```
 
 ### Step 2: Output

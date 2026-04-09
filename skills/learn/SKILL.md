@@ -13,9 +13,9 @@ Explore a codebase with 3 parallel Haiku agents → create organized documentati
 
 ```
 /learn [url]             # Auto: clone via ghq, symlink origin/, then explore
-/learn [slug]            # Use slug from ψ/memory/slugs.yaml
+/learn [slug]            # Use slug from Kvasir/memory/slugs.yaml
 /learn [repo-path]       # Path to repo
-/learn [repo-name]       # Finds in ψ/learn/owner/repo
+/learn [repo-name]       # Finds in Kvasir/learn/owner/repo
 /learn --init            # Restore all origins after git clone (like submodule init)
 ```
 
@@ -36,7 +36,7 @@ Explore a codebase with 3 parallel Haiku agents → create organized documentati
 ## Directory Structure
 
 ```
-ψ/learn/
+Kvasir/learn/
 ├── .origins             # Manifest of learned repos (committed)
 └── owner/
     └── repo/
@@ -54,9 +54,9 @@ Explore a codebase with 3 parallel Haiku agents → create organized documentati
 
 **Offload source, keep docs:**
 ```bash
-unlink ψ/learn/owner/repo/origin   # Remove symlink
+unlink Kvasir/learn/owner/repo/origin   # Remove symlink
 ghq rm owner/repo                  # Remove source
-# Docs remain in ψ/learn/owner/repo/
+# Docs remain in Kvasir/learn/owner/repo/
 ```
 
 ## /learn --init
@@ -70,10 +70,10 @@ while read repo; do
   ghq get -u "https://github.com/$repo"
   OWNER=$(dirname "$repo")
   REPO=$(basename "$repo")
-  mkdir -p "$ROOT/ψ/learn/$OWNER/$REPO"
-  ln -sf "$(ghq root)/github.com/$repo" "$ROOT/ψ/learn/$OWNER/$REPO/origin"
+  mkdir -p "$ROOT/Kvasir/learn/$OWNER/$REPO"
+  ln -sf "$(ghq root)/github.com/$repo" "$ROOT/Kvasir/learn/$OWNER/$REPO/origin"
   echo "✓ Restored: $repo"
-done < "$ROOT/ψ/learn/.origins"
+done < "$ROOT/Kvasir/learn/.origins"
 ```
 
 ## Step 0: Detect Input Type + Resolve Path
@@ -99,8 +99,8 @@ When spawning Haiku agents, you MUST give them TWO literal paths:
 
 Example: ROOT=/home/user/ghq/.../my-kvasir, learning acme-corp/cool-library, TODAY=2026-02-04, TIME=1349:
 ```
-READ from:  .../ψ/learn/acme-corp/cool-library/origin/
-WRITE to:   .../ψ/learn/acme-corp/cool-library/2026-02-04/1349_[FILENAME].md
+READ from:  .../Kvasir/learn/acme-corp/cool-library/origin/
+WRITE to:   .../Kvasir/learn/acme-corp/cool-library/2026-02-04/1349_[FILENAME].md
 ```
 
 Tell each agent: "Read from [SOURCE_DIR]. Write to [DOCS_DIR]/[TIME]_[FILENAME].md"
@@ -116,30 +116,30 @@ ghq get -u "$URL" && \
   GHQ_ROOT=$(ghq root) && \
   OWNER=$(echo "$URL" | sed -E 's|.*github.com/([^/]+)/.*|\1|') && \
   REPO=$(echo "$URL" | sed -E 's|.*/([^/]+)(\.git)?$|\1|') && \
-  mkdir -p "$ROOT/ψ/learn/$OWNER/$REPO" && \
-  ln -sf "$GHQ_ROOT/github.com/$OWNER/$REPO" "$ROOT/ψ/learn/$OWNER/$REPO/origin" && \
-  echo "$OWNER/$REPO" >> "$ROOT/ψ/learn/.origins" && \
-  sort -u -o "$ROOT/ψ/learn/.origins" "$ROOT/ψ/learn/.origins" && \
-  echo "✓ Ready: $ROOT/ψ/learn/$OWNER/$REPO/origin → source"
+  mkdir -p "$ROOT/Kvasir/learn/$OWNER/$REPO" && \
+  ln -sf "$GHQ_ROOT/github.com/$OWNER/$REPO" "$ROOT/Kvasir/learn/$OWNER/$REPO/origin" && \
+  echo "$OWNER/$REPO" >> "$ROOT/Kvasir/learn/.origins" && \
+  sort -u -o "$ROOT/Kvasir/learn/.origins" "$ROOT/Kvasir/learn/.origins" && \
+  echo "✓ Ready: $ROOT/Kvasir/learn/$OWNER/$REPO/origin → source"
 ```
 
 **Verify:**
 ```bash
-ls -la "$ROOT/ψ/learn/$OWNER/$REPO/"
+ls -la "$ROOT/Kvasir/learn/$OWNER/$REPO/"
 ```
 
-> **Note**: Grep tool doesn't follow symlinks. Use: `rg -L "pattern" ψ/learn/owner/repo/origin/`
+> **Note**: Grep tool doesn't follow symlinks. Use: `rg -L "pattern" Kvasir/learn/owner/repo/origin/`
 
 ### Then resolve path:
 ```bash
 # Find by name (searches origin symlinks)
-find ψ/learn -name "origin" -type l | xargs -I{} dirname {} | grep -i "$INPUT" | head -1
+find Kvasir/learn -name "origin" -type l | xargs -I{} dirname {} | grep -i "$INPUT" | head -1
 ```
 
 ## Scope
 
 **For external repos**: Clone with script first, then explore via `origin/`
-**For local projects** (in `specs/`, `ψ/lib/`): Read directly
+**For local projects** (in `specs/`, `Kvasir/lib/`): Read directly
 
 ## Step 1: Detect Mode & Calculate Paths
 
@@ -152,9 +152,9 @@ Check arguments for `--fast` or `--deep`:
 ```
 TODAY = YYYY-MM-DD (e.g., 2026-02-04)
 TIME = HHMM (e.g., 1349)
-REPO_DIR = [ROOT]/ψ/learn/[OWNER]/[REPO]/
-DOCS_DIR = [ROOT]/ψ/learn/[OWNER]/[REPO]/[TODAY]/   ← date folder
-SOURCE_DIR = [ROOT]/ψ/learn/[OWNER]/[REPO]/origin/  ← symlink
+REPO_DIR = [ROOT]/Kvasir/learn/[OWNER]/[REPO]/
+DOCS_DIR = [ROOT]/Kvasir/learn/[OWNER]/[REPO]/[TODAY]/   ← date folder
+SOURCE_DIR = [ROOT]/Kvasir/learn/[OWNER]/[REPO]/origin/  ← symlink
 FILE_PREFIX = [TIME]_                               ← time prefix for files
 
 Example:
@@ -162,7 +162,7 @@ Example:
 - OWNER = acme-corp
 - REPO = cool-library
 - TODAY = 2026-02-04, TIME = 1349
-- DOCS_DIR = .../ψ/learn/acme-corp/cool-library/2026-02-04/
+- DOCS_DIR = .../Kvasir/learn/acme-corp/cool-library/2026-02-04/
 - Files: 1349_ARCHITECTURE.md, 1349_CODE-SNIPPETS.md, etc.
 ```
 
@@ -306,7 +306,7 @@ WRITE your output to:   [DOCS_DIR]/[TIME]_[filename].md
 ## 📚 Quick Learn: [REPO]
 
 **Mode**: fast (1 agent)
-**Location**: ψ/learn/$OWNER/$REPO/[TODAY]/[TIME]_*.md
+**Location**: Kvasir/learn/$OWNER/$REPO/[TODAY]/[TIME]_*.md
 
 | File | Description |
 |------|-------------|
@@ -319,7 +319,7 @@ WRITE your output to:   [DOCS_DIR]/[TIME]_[filename].md
 ## 📚 Learning Complete: [REPO]
 
 **Mode**: default (3 agents)
-**Location**: ψ/learn/$OWNER/$REPO/[TODAY]/[TIME]_*.md
+**Location**: Kvasir/learn/$OWNER/$REPO/[TODAY]/[TIME]_*.md
 
 | File | Description |
 |------|-------------|
@@ -336,7 +336,7 @@ WRITE your output to:   [DOCS_DIR]/[TIME]_[filename].md
 ## 📚 Deep Learning Complete: [REPO]
 
 **Mode**: deep (5 agents)
-**Location**: ψ/learn/$OWNER/$REPO/[TODAY]/[TIME]_*.md
+**Location**: Kvasir/learn/$OWNER/$REPO/[TODAY]/[TIME]_*.md
 
 | File | Description |
 |------|-------------|
@@ -357,7 +357,7 @@ For Kvasirs that want to commit docs but ignore symlinks:
 ```gitignore
 # Ignore origin symlinks only (source lives in ghq)
 # Note: no trailing slash - origin is a symlink, not a directory
-ψ/learn/**/origin
+Kvasir/learn/**/origin
 ```
 
 **After running /learn**, check your repo's `.gitignore` has these patterns so docs are committed but symlinks are ignored.

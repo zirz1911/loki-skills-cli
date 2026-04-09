@@ -41,7 +41,7 @@ gh issue list --state open --limit 10 --json number,title,updatedAt --jq '.[] | 
 
 ### 2. Resolve Vault Path
 ```bash
-PSI=$(readlink -f ψ 2>/dev/null || echo "ψ")
+PSI=$(readlink -f Kvasir 2>/dev/null || echo "Kvasir")
 ```
 
 ### 3. Current Focus

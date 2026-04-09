@@ -132,7 +132,7 @@ Model info available from context:
 
 Look for Kvasir-specific identity in:
 1. `CLAUDE.md` - Project-level identity
-2. `ψ/` directory - Kvasir brain structure
+2. `Kvasir/` directory - Kvasir brain structure
 3. `.claude/` or `.opencode/` - Agent config
 
 If Kvasir identity found, include:
