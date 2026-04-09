@@ -97,7 +97,7 @@ When spawning Haiku agents, you MUST give them TWO literal paths:
 
 **FIX**: Always give BOTH paths as LITERAL absolute values (no variables!):
 
-Example: ROOT=/home/user/ghq/.../my-oracle, learning acme-corp/cool-library, TODAY=2026-02-04, TIME=1349:
+Example: ROOT=/home/user/ghq/.../my-kvasir, learning acme-corp/cool-library, TODAY=2026-02-04, TIME=1349:
 ```
 READ from:  .../ψ/learn/acme-corp/cool-library/origin/
 WRITE to:   .../ψ/learn/acme-corp/cool-library/2026-02-04/1349_[FILENAME].md
@@ -158,7 +158,7 @@ SOURCE_DIR = [ROOT]/ψ/learn/[OWNER]/[REPO]/origin/  ← symlink
 FILE_PREFIX = [TIME]_                               ← time prefix for files
 
 Example:
-- ROOT = /home/user/ghq/github.com/my-org/my-oracle
+- ROOT = /home/user/ghq/github.com/my-org/my-kvasir
 - OWNER = acme-corp
 - REPO = cool-library
 - TODAY = 2026-02-04, TIME = 1349
@@ -352,7 +352,7 @@ WRITE your output to:   [DOCS_DIR]/[TIME]_[filename].md
 
 ## .gitignore Pattern
 
-For Oracles that want to commit docs but ignore symlinks:
+For Kvasirs that want to commit docs but ignore symlinks:
 
 ```gitignore
 # Ignore origin symlinks only (source lives in ghq)

@@ -36,9 +36,9 @@ function updateInstaller(skillPath: string) {
 }
 
 function writeVersionFile(skills: string[]) {
-  const content = `# Loki Skills
+  const content = `# Kvasir Skills
 
-Installed by: **loki-skills-cli v${VERSION}**
+Installed by: **kvasir-skills (loki-skills-cli v${VERSION})**
 Installed at: ${new Date().toISOString()}
 Agent: Claude Code
 Skills: ${skills.length}
@@ -46,7 +46,7 @@ Skills: ${skills.length}
 ## Update Skills
 
 \`\`\`bash
-bunx --bun loki-skills@github:zirz1911/loki-skills-cli install -g -y
+bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install -g -y
 \`\`\`
 
 ## Installed Skills
@@ -140,21 +140,21 @@ function cmdList() {
 
 function cmdHelp() {
   console.log(`
-🎭 loki-skills-cli v${VERSION}
+🎭 kvasir-skills (loki-skills-cli v${VERSION})
 ชุด Claude Code skills โดย Lokkji
 
 Usage:
-  loki-skills install [-g] [-y]    ติดตั้ง skills ทั้งหมด
-  loki-skills uninstall [-g] [-y]  ถอนติดตั้ง skills ทั้งหมด
-  loki-skills list                 แสดงรายการ skills ทั้งหมด
-  loki-skills version              แสดง version
+  kvasir-skills install [-g] [-y]    ติดตั้ง skills ทั้งหมด
+  kvasir-skills uninstall [-g] [-y]  ถอนติดตั้ง skills ทั้งหมด
+  kvasir-skills list                 แสดงรายการ skills ทั้งหมด
+  kvasir-skills version              แสดง version
 
 Flags:
   -g, --global   ติดตั้งใน ~/.claude/skills/ (global)
   -y, --yes      ข้ามการยืนยัน
 
 ติดตั้งครั้งแรก:
-  bunx --bun loki-skills@github:zirz1911/loki-skills-cli install -g -y
+  bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install -g -y
 `)
 }
 

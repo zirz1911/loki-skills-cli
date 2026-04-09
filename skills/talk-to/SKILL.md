@@ -2,12 +2,12 @@
 installer: loki-skills-cli v1.0.0
 origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
 name: talk-to
-description: คุยกับ agent ผ่าน Oracle threads ใช้เมื่อพูดว่า talk to, message, chat with
+description: คุยกับ agent ผ่าน Kvasir threads ใช้เมื่อพูดว่า talk to, message, chat with
 ---
 
 # /talk-to - Agent Messaging
 
-Send messages to agents via Oracle threads. Each agent has a persistent channel thread.
+Send messages to agents via Kvasir threads. Each agent has a persistent channel thread.
 
 ## Usage
 
@@ -42,7 +42,7 @@ If ARGUMENTS is empty, show usage help then run --list.
 Skip lookup. One MCP call.
 
 1. Compose message from intent
-2. `oracle_thread({ title: "channel:{agent}", message, role: "human" })`
+2. `kvasir_thread({ title: "channel:{agent}", message, role: "human" })`
 3. Confirm: `Created channel:{agent} (thread #{id})`
 
 ## Mode 3: One-shot (default)

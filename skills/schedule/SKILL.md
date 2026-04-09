@@ -2,12 +2,12 @@
 installer: loki-skills-cli v1.0.0
 origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
 name: schedule
-description: ดู schedule ผ่าน Oracle API ใช้เมื่อพูดว่า schedule, upcoming events, what's on today, calendar
+description: ดู schedule ผ่าน Kvasir API ใช้เมื่อพูดว่า schedule, upcoming events, what's on today, calendar
 ---
 
 # /schedule - Query Schedule
 
-Query the Oracle schedule database via HTTP API. Backed by Drizzle DB with proper date indexing.
+Query the Kvasir schedule database via HTTP API. Backed by Drizzle DB with proper date indexing.
 
 ## Usage
 
@@ -28,7 +28,7 @@ Run the query script:
 bun .claude/skills/schedule/scripts/query.ts [filter]
 ```
 
-The script queries `GET /api/schedule` on the Oracle HTTP server (port 47778).
+The script queries `GET /api/schedule` on the Kvasir HTTP server (port 47778).
 
 ## Output Format
 
@@ -45,7 +45,7 @@ Upcoming (5 events)
 │ Mar 10 │ 15:00 │ นัดอ.เศรษฐ์ (ที่คลินิก)                │
 └────────┴───────┴──────────────────────────────────┘
 
-📄 `~/.oracle/ψ/inbox/schedule.md`
+📄 `~/.kvasir/ψ/inbox/schedule.md`
 ```
 
 Rules:
@@ -67,6 +67,6 @@ GET /api/schedule?status=all              → include done/cancelled
 
 ## See Also
 
-- `scripts/query.ts` - Query script (hits Oracle API)
-- Oracle DB: `~/.oracle/oracle.db` → `schedule` table
-- Auto-export: `~/.oracle/ψ/inbox/schedule.md` (generated on write)
+- `scripts/query.ts` - Query script (hits Kvasir API)
+- Kvasir DB: `~/.kvasir/kvasir.db` → `schedule` table
+- Auto-export: `~/.kvasir/ψ/inbox/schedule.md` (generated on write)

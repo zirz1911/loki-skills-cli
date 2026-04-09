@@ -2,7 +2,7 @@
 installer: loki-skills-cli v1.0.0
 origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
 name: trace
-description: ค้นหา projects ข้าม git history, repos, docs และ Oracle ใช้เมื่อพูดว่า trace, find project, where is [project] รองรับ --oracle, --smart, --deep
+description: ค้นหา projects ข้าม git history, repos, docs และ Kvasir ใช้เมื่อพูดว่า trace, find project, where is [project] รองรับ --kvasir, --smart, --deep
 ---
 
 # /trace - Unified Discovery System
@@ -13,7 +13,7 @@ Find + Log + Distill
 
 ```
 /trace [query]                    # Current repo (default --smart)
-/trace [query] --oracle           # Oracle only (fastest)
+/trace [query] --kvasir           # Kvasir only (fastest)
 /trace [query] --deep             # 5 parallel subagents
 /trace [query] --repo [path]      # Search specific local repo
 /trace [query] --repo [url]       # Clone to ghq, then search
@@ -29,7 +29,7 @@ Find + Log + Distill
     └── HHMM_[query-slug].md # Time-prefixed trace log
 ```
 
-**Trace logs are committed** - they become Oracle memory for future searches.
+**Trace logs are committed** - they become Kvasir memory for future searches.
 
 ## Step 0: Timestamp + Calculate Paths
 
@@ -81,9 +81,9 @@ TRACE_FILE="$ROOT/ψ/memory/traces/$TODAY/${TIME}_[query-slug].md"
 
 ---
 
-## Mode 1: --oracle (Oracle Only)
+## Mode 1: --kvasir (Kvasir Only)
 
-**Fastest. Just Oracle MCP, no subagents.**
+**Fastest. Just Kvasir MCP, no subagents.**
 
 ```
 oracle_search("[query]", limit=15)
@@ -95,16 +95,16 @@ Display results and done. Even if empty.
 
 ## Mode 2: --smart (Default)
 
-**Oracle first → auto-escalate if results < 3**
+**Kvasir first → auto-escalate if results < 3**
 
-**Step 1**: Query Oracle first
+**Step 1**: Query Kvasir first
 ```
 oracle_search("[query]", limit=10)
 ```
 
 **Step 2**: Check result count
-- If Oracle results >= 3 → Display and done
-- If Oracle results < 3 → Auto-escalate to --deep mode
+- If Kvasir results >= 3 → Display and done
+- If Kvasir results < 3 → Auto-escalate to --deep mode
 
 ---
 
@@ -145,7 +145,7 @@ Search other locations:
 find $(ghq root) -maxdepth 3 -name "*[query]*" 2>/dev/null | head -20
 ```
 
-### Agent 5: Oracle Memory (ψ/)
+### Agent 5: Kvasir Memory (ψ/)
 Search ψ/memory/ for:
 - Learnings mentioning query
 - Retrospectives mentioning query
@@ -161,7 +161,7 @@ Search ψ/memory/ for:
 ---
 query: "[query]"
 target: "[TARGET_NAME]"
-mode: [oracle|smart|deep]
+mode: [kvasir|smart|deep]
 timestamp: YYYY-MM-DD HH:MM
 ---
 
@@ -171,7 +171,7 @@ timestamp: YYYY-MM-DD HH:MM
 **Mode**: [mode]
 **Time**: [timestamp]
 
-## Oracle Results
+## Kvasir Results
 [list results or "None"]
 
 ## Files Found
@@ -186,7 +186,7 @@ timestamp: YYYY-MM-DD HH:MM
 ## Cross-Repo Matches
 [list or "None"]
 
-## Oracle Memory
+## Kvasir Memory
 [list or "None"]
 
 ## Summary
@@ -195,10 +195,10 @@ timestamp: YYYY-MM-DD HH:MM
 
 ---
 
-## Step 4: Log to Oracle MCP
+## Step 4: Log to Kvasir MCP
 
 ```
-oracle_trace({
+kvasir_trace({
   query: "[query]",
   project: "[TARGET_NAME]",
   foundFiles: [...],
@@ -217,10 +217,10 @@ oracle_trace({
 
 | User Action | Meaning | AI Response |
 |-------------|---------|-------------|
-| `/trace X` | First search | --smart (Oracle first) |
-| `/trace X` again | Still seeking | Oracle knows |
+| `/trace X` | First search | --smart (Kvasir first) |
+| `/trace X` again | Still seeking | Kvasir knows |
 | `/trace X --deep` | Really need it | Go deep with subagents |
-| Found! | **RESONANCE** | Log to Oracle |
+| Found! | **RESONANCE** | Log to Kvasir |
 
 ### Skill Separation
 
@@ -239,8 +239,8 @@ oracle_trace({
 
 | Mode | Speed | Scope | Auto-Escalate |
 |------|-------|-------|---------------|
-| `--oracle` | Fast | Oracle only | No |
-| `--smart` | Medium | Oracle → maybe deep | Yes (< 3 results) |
+| `--kvasir` | Fast | Kvasir only | No |
+| `--smart` | Medium | Kvasir → maybe deep | Yes (< 3 results) |
 | `--deep` | Thorough | 5 parallel agents | N/A |
 | Flag | Effect |
 |------|--------|

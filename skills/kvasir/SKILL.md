@@ -1,30 +1,30 @@
 ---
 installer: loki-skills-cli v1.0.0
 origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
-name: oracle
-description: จัดการ Oracle skills และ profiles ใช้เมื่อพูดว่า oracle, profile, install skill, remove skill
+name: kvasir
+description: จัดการ Kvasir skills และ profiles ใช้เมื่อพูดว่า kvasir, profile, install skill, remove skill
 ---
 
-# /oracle
+# /kvasir
 
-> Skill and profile management for Oracle instruments.
+> Skill and profile management for Kvasir instruments.
 
 ## Usage
 
 ```
-/oracle prepare              # check & install git, gh, ghq; set up gh auth
-/oracle profile              # list available profiles
-/oracle profile <name>       # switch to a profile
-/oracle install <skill>      # install one skill
-/oracle remove <skill>       # remove one skill
-/oracle skills               # list installed skills
+/kvasir prepare              # check & install git, gh, ghq; set up gh auth
+/kvasir profile              # list available profiles
+/kvasir profile <name>       # switch to a profile
+/kvasir install <skill>      # install one skill
+/kvasir remove <skill>       # remove one skill
+/kvasir skills               # list installed skills
 ```
 
 ---
 
 ## Subcommands
 
-### /oracle prepare
+### /kvasir prepare
 
 Check for required tools and install any that are missing. Set up `gh` auth if needed.
 
@@ -70,46 +70,46 @@ ghq     ✓ installed (root: ~/Code)
 
 If everything is already set up, just print the summary — no changes needed.
 
-### /oracle profile
+### /kvasir profile
 
 List available profiles.
 
 ```bash
-oracle-skills profiles
+kvasir-skills profiles
 ```
 
-### /oracle profile \<name\>
+### /kvasir profile \<name\>
 
 Switch to a profile (installs that profile's skill set).
 
 Profiles: `seed`/`minimal` (6 skills), `standard` (12 skills), `full` (all)
 
 ```bash
-oracle-skills install -g -y --profile <name>
+kvasir-skills install -g -y --profile <name>
 ```
 
-### /oracle install \<skill\>
+### /kvasir install \<skill\>
 
 Install a single skill.
 
 ```bash
-oracle-skills install -g -y --skill <skill>
+kvasir-skills install -g -y --skill <skill>
 ```
 
-### /oracle remove \<skill\>
+### /kvasir remove \<skill\>
 
 Uninstall a single skill.
 
 ```bash
-oracle-skills uninstall -g -y --skill <skill>
+kvasir-skills uninstall -g -y --skill <skill>
 ```
 
-### /oracle skills
+### /kvasir skills
 
 List installed skills.
 
 ```bash
-oracle-skills list -g
+kvasir-skills list -g
 ```
 
 ---
@@ -118,12 +118,12 @@ oracle-skills list -g
 
 | Command | Action |
 |---------|--------|
-| `/oracle prepare` | Check & install git, gh, ghq; set up gh auth |
-| `/oracle profile` | List available profiles |
-| `/oracle profile seed` | Switch to seed profile |
-| `/oracle install <skill>` | Install one skill |
-| `/oracle remove <skill>` | Remove one skill |
-| `/oracle skills` | List installed skills |
+| `/kvasir prepare` | Check & install git, gh, ghq; set up gh auth |
+| `/kvasir profile` | List available profiles |
+| `/kvasir profile seed` | Switch to seed profile |
+| `/kvasir install <skill>` | Install one skill |
+| `/kvasir remove <skill>` | Remove one skill |
+| `/kvasir skills` | List installed skills |
 
 ---
 

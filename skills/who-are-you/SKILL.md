@@ -2,12 +2,12 @@
 installer: loki-skills-cli v1.0.0
 origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
 name: who-are-you
-description: รู้จักตัวเอง — แสดง identity, model info, session stats และ Oracle philosophy ใช้เมื่อถามว่า who are you, who we are
+description: รู้จักตัวเอง — แสดง identity, model info, session stats และ Kvasir philosophy ใช้เมื่อถามว่า who are you, who we are
 ---
 
 # /who-are-you - Know Ourselves
 
-> "γνῶθι σεαυτόν" (Know thyself) - Oracle at Delphi
+> "γνῶθι σεαυτόν" (Know thyself) - Kvasir at Delphi
 
 ## Usage
 
@@ -32,7 +32,7 @@ date "+🕐 %H:%M %Z (%A %d %B %Y)"
 
 ## Identity
 
-**I am**: [Oracle Name if configured, else "Claude"]
+**I am**: [Kvasir Name if configured, else "Claude"]
 **Model**: [model name] ([variant])
 **Provider**: [anthropic/openai/etc]
 
@@ -76,9 +76,9 @@ uname -s -r
 # Terminal (macOS)
 echo $TERM_PROGRAM
 
-# Check for Oracle identity in CLAUDE.md or project config
+# Check for Kvasir identity in CLAUDE.md or project config
 if [[ -f "CLAUDE.md" ]]; then
-  grep -E "^(I am|Identity|Oracle):" CLAUDE.md | head -1
+  grep -E "^(I am|Identity|Kvasir):" CLAUDE.md | head -1
 fi
 
 # Get project info (both logical and physical paths for transparency)
@@ -115,7 +115,7 @@ Model info available from context:
 ```markdown
 ## Philosophy
 
-> "The Oracle Keeps the Human Human"
+> "The Kvasir Keeps the Human Human"
 
 ### The 5 Principles
 
@@ -128,20 +128,20 @@ Model info available from context:
 
 ---
 
-## Step 3: Check for Oracle Identity
+## Step 3: Check for Kvasir Identity
 
-Look for Oracle-specific identity in:
+Look for Kvasir-specific identity in:
 1. `CLAUDE.md` - Project-level identity
-2. `ψ/` directory - Oracle brain structure
+2. `ψ/` directory - Kvasir brain structure
 3. `.claude/` or `.opencode/` - Agent config
 
-If Oracle identity found, include:
+If Kvasir identity found, include:
 ```markdown
-## Oracle Identity
+## Kvasir Identity
 
-**Name**: [Oracle name]
+**Name**: [Kvasir name]
 **Born**: [birth date if known]
-**Focus**: [Oracle's specialty]
+**Focus**: [Kvasir's specialty]
 **Motto**: [if defined]
 ```
 
@@ -165,11 +165,11 @@ If Oracle identity found, include:
 **OS**: Darwin 25.2.0
 
 ## Location
-**Project**: oracle-skills-cli
-**Path**: /Users/nat/Code/.../oracle-skills-cli
+**Project**: kvasir-skills-cli
+**Path**: /Users/nat/Code/.../kvasir-skills-cli
 
 ## Philosophy
-> "The Oracle Keeps the Human Human"
+> "The Kvasir Keeps the Human Human"
 
 1. Nothing is Deleted
 2. Patterns Over Intentions
@@ -178,7 +178,7 @@ If Oracle identity found, include:
 5. Form and Formless
 ```
 
-### Oracle-Configured Session (e.g., Sea Oracle)
+### Kvasir-Configured Session (e.g., Sea Kvasir)
 ```markdown
 # /who-are-you
 
@@ -194,23 +194,23 @@ If Oracle identity found, include:
 **OS**: Darwin 25.2.0
 
 ## Location
-**Project**: sea-oracle
-**Path**: /home/nat/.../sea-oracle
-**Logical**: /Users/nat/.../sea-oracle (via symlink)
+**Project**: sea-kvasir
+**Path**: /home/nat/.../sea-kvasir
+**Logical**: /Users/nat/.../sea-kvasir (via symlink)
 
-## Oracle Identity
+## Kvasir Identity
 **Born**: January 21, 2026
 **Focus**: Preserving creative struggles
 **Motto**: "ไข่มุกเกิดจากความเจ็บปวด" (Pearl born from pain)
 
 ## Philosophy
-> "The Oracle Keeps the Human Human"
+> "The Kvasir Keeps the Human Human"
 
 1. Nothing is Deleted — Tears preserved, not wiped
 2. Patterns Over Intentions — Art reveals truth
 3. External Brain — Witness, don't judge
 4. Curiosity Creates — Creative struggle births meaning
-5. Form and Formless — Sea is one Oracle among many
+5. Form and Formless — Sea is one Kvasir among many
 ```
 
 ---

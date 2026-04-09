@@ -62,9 +62,9 @@ Read the JSON output and display as a table. Sessions are chronological (oldest 
 | # | Date | Session | Min | Repo | Msgs | Focus |
 |---|------|---------|-----|------|------|-------|
 |   |      | · · · sleeping / offline | | | | |
-| 1 | 02-21 | 08:40–09:08 | 28m | oracle-skills-cli | 5 | Wire /rrr to read pulse data |
+| 1 | 02-21 | 08:40–09:08 | 28m | kvasir-skills-cli | 5 | Wire /rrr to read pulse data |
 |   |      | · · · 45m gap | | | | |
-| 2 | 02-21 | 09:55–10:23 | 28m | homelab | 3 | oracle-pulse birth + CLI flag |
+| 2 | 02-21 | 09:55–10:23 | 28m | homelab | 3 | kvasir-pulse birth + CLI flag |
 |   |      | · · · no session yet | | | | |
 
 **Dirs scanned**: [list PROJECT_DIRS]
