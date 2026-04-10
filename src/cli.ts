@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, cpSync, readFileSync, writeFileSync, readdirSync
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-const VERSION = '1.0.0'
+const VERSION = '1.1.0'
 const PACKAGE_DIR = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SKILLS_SRC = join(PACKAGE_DIR, 'skills')
 const GLOBAL_TARGET = join(process.env.HOME!, '.claude', 'skills')
