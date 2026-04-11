@@ -1,7 +1,7 @@
 {
   "name": "kvasir-skills",
-  "version": "1.1.0",
-  "description": "Kvasir Skills CLI — ชุด skills สำหรับ Claude Code โดย Lokkji",
+  "version": "1.2.0",
+  "description": "Kvasir Skills CLI — ชุด skills สำหรับ Claude Code และ Gemini CLI โดย Lokkji",
   "bin": {
     "kvasir-skills": "./src/cli.ts",
     "loki-skills": "./src/cli.ts"

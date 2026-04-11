@@ -4,56 +4,94 @@ import { existsSync, mkdirSync, cpSync, readFileSync, writeFileSync, readdirSync
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-const VERSION = '1.1.0'
+const VERSION = '1.2.0'
 const PACKAGE_DIR = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SKILLS_SRC = join(PACKAGE_DIR, 'skills')
-const GLOBAL_TARGET = join(process.env.HOME!, '.claude', 'skills')
 
 // ── Parse args ──────────────────────────────────────────────
 const args = process.argv.slice(2)
 const command = args[0] ?? 'help'
-const isGlobal = args.includes('-g') || args.includes('--global')
-const isYes    = args.includes('-y') || args.includes('--yes')
+const isGlobal  = args.includes('-g') || args.includes('--global')
+const isYes     = args.includes('-y') || args.includes('--yes')
+const isGemini  = args.includes('--gemini')
 
-const targetDir = isGlobal ? GLOBAL_TARGET : join(process.cwd(), '.claude', 'skills')
+// --path <dir> override
+const pathIdx = args.findIndex(a => a === '--path')
+const customPath = pathIdx !== -1 ? args[pathIdx + 1] : null
+
+// ── Target directories ───────────────────────────────────────
+const CLAUDE_TARGET = isGlobal
+  ? join(process.env.HOME!, '.claude', 'skills')
+  : join(process.cwd(), '.claude', 'skills')
+
+const GEMINI_DEFAULT = join(process.env.HOME!, 'Loki-Gemini', '.gemini', 'commands')
+const GEMINI_TARGET  = customPath ?? GEMINI_DEFAULT
+
+const targetDir = isGemini ? GEMINI_TARGET : CLAUDE_TARGET
 
 // ── Helpers ──────────────────────────────────────────────────
 function getSkillNames(): string[] {
-  return readdirSync(SKILLS_SRC).filter(name => {
-    return statSync(join(SKILLS_SRC, name)).isDirectory()
-  })
+  return readdirSync(SKILLS_SRC).filter(name =>
+    statSync(join(SKILLS_SRC, name)).isDirectory()
+  )
+}
+
+function readSkillDesc(skillName: string): string {
+  const mdPath = join(SKILLS_SRC, skillName, 'SKILL.md')
+  if (!existsSync(mdPath)) return ''
+  const match = readFileSync(mdPath, 'utf-8').match(/^description:\s*(.+)$/m)
+  return match ? match[1] : ''
 }
 
 function updateInstaller(skillPath: string) {
   const mdPath = join(skillPath, 'SKILL.md')
   if (!existsSync(mdPath)) return
   let content = readFileSync(mdPath, 'utf-8')
-  content = content.replace(
-    /^installer:.*$/m,
-    `installer: loki-skills-cli v${VERSION}`
-  )
+  content = content.replace(/^installer:.*$/m, `installer: loki-skills-cli v${VERSION}`)
   writeFileSync(mdPath, content)
 }
 
-function writeVersionFile(skills: string[]) {
+function writeVersionFile(skills: string[], target: string) {
+  const agent = isGemini ? 'Gemini CLI' : 'Claude Code'
+  const updateCmd = isGemini
+    ? `bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install --gemini -y`
+    : `bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install -g -y`
+
   const content = `# Kvasir Skills
 
 Installed by: **kvasir-skills (loki-skills-cli v${VERSION})**
 Installed at: ${new Date().toISOString()}
-Agent: Claude Code
+Agent: ${agent}
 Skills: ${skills.length}
 
 ## Update Skills
 
 \`\`\`bash
-bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install -g -y
+${updateCmd}
 \`\`\`
 
 ## Installed Skills
 
 ${skills.map(s => `- ${s}`).join('\n')}
 `
-  writeFileSync(join(targetDir, 'VERSION.md'), content)
+  writeFileSync(join(target, 'VERSION.md'), content)
+}
+
+function generateGeminiToml(skillName: string): string {
+  const skillPath = join(SKILLS_SRC, skillName)
+  const desc = readSkillDesc(skillName)
+  return `description = "v${VERSION} | ${desc}"
+prompt = """
+You are running the /${skillName} skill.
+
+Read the skill file at ${skillPath}/SKILL.md and follow ALL instructions in it.
+
+Arguments: {{args}}
+
+---
+loki-skills-cli v${VERSION}
+"""
+`
 }
 
 function confirm(msg: string): boolean {
@@ -67,8 +105,11 @@ function confirm(msg: string): boolean {
 // ── Commands ──────────────────────────────────────────────────
 function cmdInstall() {
   const skills = getSkillNames()
+  const agent = isGemini ? 'Gemini CLI' : 'Claude Code'
+
   console.log(`\n🎭 loki-skills-cli v${VERSION}`)
-  console.log(`📦 ${skills.length} skills พร้อม install → ${targetDir}\n`)
+  console.log(`🎯 Target: ${agent}`)
+  console.log(`📦 ${skills.length} skills → ${targetDir}\n`)
 
   if (!confirm(`ติดตั้ง ${skills.length} skills?`)) {
     console.log('ยกเลิก')
@@ -77,29 +118,35 @@ function cmdInstall() {
 
   if (!existsSync(targetDir)) mkdirSync(targetDir, { recursive: true })
 
-  let installed = 0
-  let skipped = 0
-
   for (const name of skills) {
-    const src = join(SKILLS_SRC, name)
-    const dest = join(targetDir, name)
-
-    cpSync(src, dest, { recursive: true })
-    updateInstaller(dest)
-    installed++
+    if (isGemini) {
+      // Generate .toml command file
+      const toml = generateGeminiToml(name)
+      writeFileSync(join(targetDir, `${name}.toml`), toml)
+    } else {
+      // Copy full skill directory
+      const src  = join(SKILLS_SRC, name)
+      const dest = join(targetDir, name)
+      cpSync(src, dest, { recursive: true })
+      updateInstaller(dest)
+    }
     process.stdout.write(`  ✅ ${name}\n`)
   }
 
-  writeVersionFile(skills)
+  writeVersionFile(skills, targetDir)
 
-  console.log(`\n✨ ติดตั้งเสร็จ: ${installed} skills → ${targetDir}`)
-  console.log('🔄 Restart Claude Code เพื่อโหลด skills ใหม่\n')
+  console.log(`\n✨ ติดตั้งเสร็จ: ${skills.length} skills → ${targetDir}`)
+  if (isGemini) {
+    console.log('🔄 Restart Gemini CLI เพื่อโหลด commands ใหม่\n')
+  } else {
+    console.log('🔄 Restart Claude Code เพื่อโหลด skills ใหม่\n')
+  }
 }
 
 function cmdUninstall() {
   const skills = getSkillNames()
   console.log(`\n🎭 loki-skills-cli v${VERSION}`)
-  console.log(`🗑️  จะลบ ${skills.length} skills ออกจาก ${targetDir}\n`)
+  console.log(`🗑️  จะลบ ${skills.length} items ออกจาก ${targetDir}\n`)
 
   if (!confirm('ยืนยันการถอนติดตั้ง?')) {
     console.log('ยกเลิก')
@@ -108,30 +155,34 @@ function cmdUninstall() {
 
   let removed = 0
   for (const name of skills) {
-    const dest = join(targetDir, name)
-    if (existsSync(dest)) {
-      rmSync(dest, { recursive: true })
-      process.stdout.write(`  🗑️  ${name}\n`)
-      removed++
+    if (isGemini) {
+      const tomlFile = join(targetDir, `${name}.toml`)
+      if (existsSync(tomlFile)) {
+        rmSync(tomlFile)
+        process.stdout.write(`  🗑️  ${name}.toml\n`)
+        removed++
+      }
+    } else {
+      const dest = join(targetDir, name)
+      if (existsSync(dest)) {
+        rmSync(dest, { recursive: true })
+        process.stdout.write(`  🗑️  ${name}\n`)
+        removed++
+      }
     }
   }
 
   const versionFile = join(targetDir, 'VERSION.md')
   if (existsSync(versionFile)) rmSync(versionFile)
 
-  console.log(`\nถอนติดตั้งเสร็จ: ${removed} skills\n`)
+  console.log(`\nถอนติดตั้งเสร็จ: ${removed} items\n`)
 }
 
 function cmdList() {
   const skills = getSkillNames()
   console.log(`\n🎭 loki-skills-cli v${VERSION} — ${skills.length} skills\n`)
   for (const name of skills) {
-    const mdPath = join(SKILLS_SRC, name, 'SKILL.md')
-    let desc = ''
-    if (existsSync(mdPath)) {
-      const match = readFileSync(mdPath, 'utf-8').match(/^description:\s*(.+)$/m)
-      if (match) desc = match[1]
-    }
+    const desc = readSkillDesc(name)
     console.log(`  📜 /${name}`)
     if (desc) console.log(`     ${desc}`)
   }
@@ -141,20 +192,35 @@ function cmdList() {
 function cmdHelp() {
   console.log(`
 🎭 kvasir-skills (loki-skills-cli v${VERSION})
-ชุด Claude Code skills โดย Lokkji
+ชุด Kvasir skills โดย Lokkji
 
 Usage:
-  kvasir-skills install [-g] [-y]    ติดตั้ง skills ทั้งหมด
-  kvasir-skills uninstall [-g] [-y]  ถอนติดตั้ง skills ทั้งหมด
-  kvasir-skills list                 แสดงรายการ skills ทั้งหมด
-  kvasir-skills version              แสดง version
+  kvasir-skills install [-g] [-y]              ติดตั้งสำหรับ Claude Code
+  kvasir-skills install --gemini [-y]          ติดตั้งสำหรับ Gemini CLI
+  kvasir-skills install --gemini --path <dir>  ระบุ path เอง
+  kvasir-skills uninstall [-g] [-y]            ถอนติดตั้ง Claude Code
+  kvasir-skills uninstall --gemini [-y]        ถอนติดตั้ง Gemini CLI
+  kvasir-skills list                           แสดงรายการ skills ทั้งหมด
+  kvasir-skills version                        แสดง version
 
 Flags:
-  -g, --global   ติดตั้งใน ~/.claude/skills/ (global)
-  -y, --yes      ข้ามการยืนยัน
+  -g, --global       ติดตั้งใน ~/.claude/skills/ (Claude Code global)
+  --gemini           ติดตั้งเป็น .toml commands สำหรับ Gemini CLI
+  --path <dir>       กำหนด target directory เอง (override default)
+  -y, --yes          ข้ามการยืนยัน
 
-ติดตั้งครั้งแรก:
+Default paths:
+  Claude Code (global): ~/.claude/skills/
+  Gemini CLI:           ~/Loki-Gemini/.gemini/commands/
+
+ติดตั้ง Claude Code:
   bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install -g -y
+
+ติดตั้ง Gemini CLI:
+  bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install --gemini -y
+
+ติดตั้ง Gemini CLI ใน path อื่น:
+  bunx --bun kvasir-skills@github:zirz1911/loki-skills-cli install --gemini --path ~/MyProject/.gemini/commands -y
 `)
 }
 
