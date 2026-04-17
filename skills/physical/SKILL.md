@@ -1,14 +1,14 @@
 ---
-installer: loki-skills-cli v1.0.0
+installer: loki-skills-cli v1.2.0
 origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
 name: physical
 description: ตรวจสอบตำแหน่งทางกายภาพผ่าน FindMy ใช้เมื่อพูดว่า physical, where am I, location
-user-invocable: false
+user-invocable: true
 ---
 
 # /physical - Physical Location Awareness
 
-Check Nat's current physical location from FindMy data.
+Check Lokkji's current physical location from OwnTracks data.
 
 ## Usage
 
@@ -18,10 +18,10 @@ Check Nat's current physical location from FindMy data.
 
 ## Data Source
 
-- Repo: `laris-co/nat-location-data` (GitHub)
-- Files: `current.csv` (now), `history.csv` (today's log)
-- Updated: Every 5 minutes via white.local cron
-- Source: FindMy via Sate's iMac
+- Repo: `zirz1911/Paji-Location` (GitHub)
+- Files: `current.csv` (now), `history.csv` (all records)
+- Updated: Every 3 minutes via OwnTracks → Mosquitto → paji202
+- Source: iPhone 12 Pro Max via Tailscale
 
 ## Instructions
 
@@ -78,6 +78,7 @@ Parse and display:
 
 | Place | Lat | Lon | Type |
 |-------|-----|-----|------|
+| Contents Office | 17.445975 | 102.884746 | office |
 | cnx | 18.7669 | 98.9625 | airport |
 | bkk | 13.6900 | 100.7501 | airport |
 | dmk | 13.9126 | 100.6067 | airport |
