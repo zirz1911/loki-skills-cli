@@ -41,7 +41,21 @@ curl -s -X POST https://location.athena-oracle.site/register \
 
 ### Step 3: แสดงผล
 
-ถ้า response มี `"status": "ok"` → แสดง:
+ถ้า response มี `"status": "ok"` → เขียน config ลงเครื่องก่อน:
+
+```bash
+python3 -c "
+import json, os
+config = {'username': '{username}', 'repo': '{github_repo}'}
+path = os.path.expanduser('~/.claude/skills/physical/config.json')
+os.makedirs(os.path.dirname(path), exist_ok=True)
+with open(path, 'w') as f:
+    json.dump(config, f, indent=2)
+print('Config saved')
+"
+```
+
+แล้วแสดง:
 
 ```
 ✅ ลงทะเบียนสำเร็จ!

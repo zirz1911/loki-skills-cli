@@ -1,20 +1,35 @@
 import { $ } from 'bun';
+import { existsSync, readFileSync } from 'fs';
+import { homedir } from 'os';
 
 // Usage: bun location-query.ts [username] [mode]
-// username defaults to "paji", mode defaults to "all"
 const args = process.argv.slice(2);
-const USERNAME = args[0] && !['all', 'current', 'time'].includes(args[0]) ? args[0] : 'paji';
+const explicitUser = args[0] && !['all', 'current', 'time'].includes(args[0]) ? args[0] : null;
 const MODE = args.find(a => ['all', 'current', 'time'].includes(a)) || 'all';
 
-// Map username → github repo
-const REPOS: Record<string, string> = {
-  paji: 'zirz1911/Paji-Location',
-};
+// Resolve username + repo
+let USERNAME: string;
+let REPO: string;
 
-const repo = REPOS[USERNAME] || `zirz1911/${USERNAME.charAt(0).toUpperCase() + USERNAME.slice(1)}-Location`;
+if (explicitUser) {
+  USERNAME = explicitUser;
+  REPO = `zirz1911/${USERNAME.charAt(0).toUpperCase() + USERNAME.slice(1)}-Location`;
+} else {
+  // Read local config first
+  const configPath = `${homedir()}/.claude/skills/physical/config.json`;
+  if (existsSync(configPath)) {
+    const cfg = JSON.parse(readFileSync(configPath, 'utf8'));
+    USERNAME = cfg.username;
+    REPO = cfg.repo;
+  } else {
+    // Fallback to paji
+    USERNAME = 'paji';
+    REPO = 'zirz1911/Paji-Location';
+  }
+}
 
 async function fetchCsv(filename: string): Promise<string> {
-  const response = await $`gh api repos/${repo}/contents/${filename} --jq '.content' | base64 -d`.text();
+  const response = await $`gh api repos/${REPO}/contents/${filename} --jq '.content' | base64 -d`.text();
   return response;
 }
 
@@ -27,12 +42,12 @@ if (MODE === 'time' || MODE === 'all') {
   console.log('---TIME_AT_LOCATION---');
   const history = await fetchCsv('history.csv');
 
-  const lines = history.trim().split('\n').slice(1); // skip header
+  const lines = history.trim().split('\n').slice(1);
   const records = lines.map(line => {
     const cols = line.split(',');
     if (cols.length < 4) return null;
     return { timestamp: new Date(cols[3]) };
-  }).filter(r => r && !isNaN(r.timestamp.getTime()));
+  }).filter(r => r && !isNaN(r!.timestamp.getTime()));
 
   if (records.length > 0) {
     records.sort((a, b) => a!.timestamp.getTime() - b!.timestamp.getTime());
