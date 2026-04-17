@@ -46,7 +46,7 @@ if (MODE === 'time' || MODE === 'all') {
   const records = lines.map(line => {
     const cols = line.split(',');
     if (cols.length < 4) return null;
-    return { timestamp: new Date(cols[3]) };
+    return { timestamp: new Date(cols[3]), device: cols[6] || 'phone' };
   }).filter(r => r && !isNaN(r!.timestamp.getTime()));
 
   if (records.length > 0) {
