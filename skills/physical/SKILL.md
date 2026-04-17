@@ -79,13 +79,6 @@ Parse and display:
 | Place | Lat | Lon | Type |
 |-------|-----|-----|------|
 | Contents Office | 17.445975 | 102.884746 | office |
-| cnx | 18.7669 | 98.9625 | airport |
-| bkk | 13.6900 | 100.7501 | airport |
-| dmk | 13.9126 | 100.6067 | airport |
-| bitkub | 13.7563 | 100.5018 | office |
-| maya | 18.8024 | 98.9676 | mall |
-| central-cnx | 18.8072 | 98.9847 | mall |
-| cmu | 18.8028 | 98.9531 | university |
 
 ## Directions
 
