@@ -1,47 +1,49 @@
 import { $ } from 'bun';
 
-async function fetchFile(filename: string): Promise<string> {
-  return $`gh api repos/zirz1911/Paji-Location/contents/${filename} --jq '.content' | base64 -d`.text();
+// Usage: bun location-query.ts [username] [mode]
+// username defaults to "paji", mode defaults to "all"
+const args = process.argv.slice(2);
+const USERNAME = args[0] && !['all', 'current', 'time'].includes(args[0]) ? args[0] : 'paji';
+const MODE = args.find(a => ['all', 'current', 'time'].includes(a)) || 'all';
+
+// Map username → github repo
+const REPOS: Record<string, string> = {
+  paji: 'zirz1911/Paji-Location',
+};
+
+const repo = REPOS[USERNAME] || `zirz1911/${USERNAME.charAt(0).toUpperCase() + USERNAME.slice(1)}-Location`;
+
+async function fetchCsv(filename: string): Promise<string> {
+  const response = await $`gh api repos/${repo}/contents/${filename} --jq '.content' | base64 -d`.text();
+  return response;
 }
 
-// current.csv
-const csv = await fetchFile('current.csv');
-const lines = csv.trim().split('\n');
-if (lines.length < 2) { console.log('No location data.'); process.exit(0); }
+if (MODE === 'current' || MODE === 'all') {
+  const current = await fetchCsv('current.csv');
+  console.log(current);
+}
 
-const [lat, lon, address, timestamp, battery, accuracy] = lines[1].split(',');
-console.log(`lat = ${lat}`);
-console.log(`lon = ${lon}`);
-console.log(`address = ${address || 'unknown'}`);
-console.log(`timestamp = ${timestamp}`);
-console.log(`battery = ${battery ? battery + '%' : 'unknown'}`);
-console.log(`accuracy = ${accuracy ? accuracy + 'm' : 'unknown'}`);
+if (MODE === 'time' || MODE === 'all') {
+  console.log('---TIME_AT_LOCATION---');
+  const history = await fetchCsv('history.csv');
 
-// history.csv — time at current location
-console.log('---TIME_AT_LOCATION---');
-try {
-  const history = await fetchFile('history.csv');
-  const rows = history.trim().split('\n').slice(1); // skip header
-  const current_address = address.trim();
+  const lines = history.trim().split('\n').slice(1); // skip header
+  const records = lines.map(line => {
+    const cols = line.split(',');
+    if (cols.length < 4) return null;
+    return { timestamp: new Date(cols[3]) };
+  }).filter(r => r && !isNaN(r.timestamp.getTime()));
 
-  const here = rows
-    .map(r => r.split(','))
-    .filter(cols => cols[2]?.trim() === current_address)
-    .map(cols => new Date(cols[3]?.trim()))
-    .filter(d => !isNaN(d.getTime()))
-    .sort((a, b) => a.getTime() - b.getTime());
-
-  if (here.length >= 2) {
-    const first = here[0];
-    const last = here[here.length - 1];
-    const hours = ((last.getTime() - first.getTime()) / 3600000).toFixed(1);
-    console.log(`first_seen = ${first.toISOString()}`);
-    console.log(`last_seen = ${last.toISOString()}`);
-    console.log(`hours_here = ${hours}`);
-    console.log(`records = ${here.length}`);
+  if (records.length > 0) {
+    records.sort((a, b) => a!.timestamp.getTime() - b!.timestamp.getTime());
+    const firstSeen = records[0]!.timestamp;
+    const lastSeen = records[records.length - 1]!.timestamp;
+    const hoursHere = ((lastSeen.getTime() - firstSeen.getTime()) / (1000 * 60 * 60)).toFixed(1);
+    console.log(`first_seen = ${firstSeen.toISOString().replace('T', ' ').slice(0, 19)}`);
+    console.log(`last_seen = ${lastSeen.toISOString().replace('T', ' ').slice(0, 19)}`);
+    console.log(`records = ${records.length}`);
+    console.log(`hours_here = ${hoursHere}`);
   } else {
-    console.log(`hours_here = 0`);
+    console.log('No records found in history.');
   }
-} catch {
-  console.log(`hours_here = unknown`);
 }

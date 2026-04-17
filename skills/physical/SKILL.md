@@ -13,15 +13,15 @@ Check Lokkji's current physical location from OwnTracks data.
 ## Usage
 
 ```
-/physical
+/physical           # check paji (default)
+/physical [username] # check specific user e.g. /physical nat
 ```
 
 ## Data Source
 
-- Repo: `zirz1911/Paji-Location` (GitHub)
+- Repo: `zirz1911/{Username}-Location` (GitHub) — resolved by username
 - Files: `current.csv` (now), `history.csv` (all records)
-- Updated: Every 3 minutes via OwnTracks → Mosquitto → paji202
-- Source: iPhone 12 Pro Max via Tailscale
+- Updated: Every 3 minutes via OwnTracks → location.athena-oracle.site → paji202
 
 ## Instructions
 
