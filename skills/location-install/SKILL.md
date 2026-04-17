@@ -1,6 +1,6 @@
 ---
 name: location-install
-description: ติดตั้ง Location Tracking สำหรับ user ใหม่ — สร้าง MQTT user, GitHub repo, clone, config ใช้เมื่อพูดว่า location install, add location user, setup location
+description: ติดตั้ง Location Tracking สำหรับ user ใหม่ — สร้าง HTTP password, GitHub repo, clone, config ใช้เมื่อพูดว่า location install, add location user, setup location
 user-invocable: true
 ---
 
@@ -11,11 +11,11 @@ Install OwnTracks location tracking for a new user on this server.
 ## What this does
 
 1. Ask user for details
-2. Create MQTT credentials
+2. Add HTTP credentials to users.json
 3. Create GitHub repo (auto, under logged-in gh account)
 4. Clone repo locally
 5. Add user to `users.json`
-6. Restart `location-server`
+6. Restart `location-webhook`
 
 ## Steps
 
@@ -23,30 +23,22 @@ Install OwnTracks location tracking for a new user on this server.
 
 ```bash
 gh auth status 2>&1 | head -3
-pm2 status location-server | grep location-server
+pm2 status location-webhook | grep location-webhook
 ```
 
-If `location-server` is not running → tell user to run `/location-install` after starting it.
+If `location-webhook` is not running → tell user to start it first.
 Get GitHub username: `gh api user --jq '.login'`
 
 ### Step 2: Ask questions (one by one, wait for each answer)
 
 Ask in order:
 
-1. **Username** — "ชื่อ username สำหรับ location tracking คืออะไร? (ใช้เป็น MQTT topic: owntracks/{username}/iphone)"
-2. **Password** — "ตั้ง password สำหรับ {username} ครับ"
+1. **Username** — "ชื่อ username สำหรับ location tracking คืออะไร?"
+2. **Password** — "ตั้ง password สำหรับ {username} ครับ (ใช้ใน OwnTracks HTTP auth)"
 3. **Repo name** — "ชื่อ GitHub repo คืออะไร? (กด Enter ใช้ default: {username}-location)"
 4. **Named places** — "มีสถานที่ที่ต้องการตั้งชื่อมั้ย? เช่น Home, Office (พิมพ์ชื่อ,lat,lon เช่น 'Home,13.756,100.502' หรือ skip กด Enter)"
 
-### Step 3: Create MQTT user
-
-```bash
-sudo mosquitto_passwd -b /etc/mosquitto/passwd {username} '{password}'
-```
-
-Ask user to run: `! sudo mosquitto_passwd -b /etc/mosquitto/passwd {username} '{password}'`
-
-### Step 4: Create GitHub repo + clone
+### Step 3: Create GitHub repo + clone
 
 ```bash
 GITHUB_USER=$(gh api user --jq '.login')
@@ -68,7 +60,7 @@ git remote add origin https://github.com/$GITHUB_USER/$REPO_NAME.git
 git push -u origin main
 ```
 
-### Step 5: Add user to users.json
+### Step 4: Add user to users.json
 
 Read current `/home/paji/Project/Location-Server/users.json`, add new user entry:
 
@@ -76,8 +68,8 @@ Read current `/home/paji/Project/Location-Server/users.json`, add new user entry
 "{username}": {
   "repo_dir": "/home/paji/Project/{Username}-Location",
   "github_repo": "{github_user}/{repo_name}",
+  "http_password": "{password}",
   "named_places": [
-    // add named places if provided in step 2
     {"name": "Place Name", "lat": 0.0, "lon": 0.0, "radius_m": 200}
   ]
 }
@@ -85,14 +77,14 @@ Read current `/home/paji/Project/Location-Server/users.json`, add new user entry
 
 Write back to users.json.
 
-### Step 6: Restart location-server
+### Step 5: Restart location-webhook
 
 ```bash
-pm2 restart location-server
-pm2 logs location-server --lines 5 --nostream
+pm2 restart location-webhook
+pm2 logs location-webhook --lines 5 --nostream
 ```
 
-### Step 7: Show OwnTracks setup guide
+### Step 6: Show OwnTracks setup guide
 
 Display connection settings for the new user:
 
@@ -101,19 +93,20 @@ Display connection settings for the new user:
 
 📱 OwnTracks Settings:
 ─────────────────────
-Mode:     MQTT
-Host:     100.70.100.11  (Tailscale — ต้องเชื่อม Tailscale zirz1911 ก่อน)
-Port:     1883
-TLS:      OFF
+Mode:     HTTP
+URL:      https://location.athena-oracle.site/pub
 Username: {username}
 Password: {password}
 Device ID: iphone (หรืออะไรก็ได้)
+TLS:      ON (automatic via HTTPS)
 
 📦 GitHub Repo: https://github.com/{github_user}/{repo_name}
 ```
 
 ## Notes
 
-- Tailscale network: `zirz1911` — user ต้องได้รับ invite ก่อน
+- ไม่ต้องใช้ Tailscale — ทุกคนเชื่อมได้ผ่าน HTTPS
 - Named places เพิ่มทีหลังได้โดยแก้ `/home/paji/Project/Location-Server/users.json`
 - History จะเริ่มเก็บทันทีที่ OwnTracks ส่ง location แรก
+- "idle" status ใน OwnTracks HTTP mode = ปกติ (ไม่มี persistent connection)
+- ส่ง location จาก Map screen (ไม่ใช่ "Publish Settings")
