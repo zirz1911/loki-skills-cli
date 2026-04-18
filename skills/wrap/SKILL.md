@@ -1,27 +1,27 @@
 ---
-installer: loki-skills-cli v1.0.0
+installer: loki-skills-cli v1.2.0
 origin: Lokkji's brain, digitized — how one human works with AI, captured as code
-name: rrr
-description: สร้าง session retrospective พร้อม AI diary และ lessons learned ใช้เมื่อพูดว่า rrr, retrospective, wrap up session
+name: wrap
+description: สร้าง session retrospective พร้อม AI diary และ lessons learned ใช้เมื่อพูดว่า wrap, retrospective, wrap up session
 ---
 
-# /rrr
+# /wrap
 
 > "Reflect to grow, document to remember."
 
 ```
-/rrr              # Quick retro, main agent
-/rrr --detail     # Full template, main agent
-/rrr --dig        # Reconstruct past timeline from session .jsonl
-/rrr --deep       # 5 parallel agents (read DEEP.md)
+/wrap              # Quick retro, main agent
+/wrap --detail     # Full template, main agent
+/wrap --dig        # Reconstruct past timeline from session .jsonl
+/wrap --deep       # 5 parallel agents (read DEEP.md)
 ```
 
 **NEVER spawn subagents or use the Task tool. Only `--deep` may use subagents.**
-**`/rrr`, `/rrr --detail`, and `/rrr --dig` = main agent only. Zero subagents. Zero Task calls.**
+**`/wrap`, `/wrap --detail`, and `/wrap --dig` = main agent only. Zero subagents. Zero Task calls.**
 
 ---
 
-## /rrr (Default)
+## /wrap (Default)
 
 ### 1. Gather
 
@@ -68,7 +68,7 @@ Write immediately, no prompts. If pulse data was found, weave it into the narrat
 ### 4. Kvasir Sync
 
 ```
-kvasir_learn({ pattern: [lesson content], concepts: [tags], source: "rrr: REPO" })
+kvasir_learn({ pattern: [lesson content], concepts: [tags], source: "wrap: REPO" })
 ```
 
 ### 5. Save
@@ -79,7 +79,7 @@ Retro files are written to vault (wherever `Kvasir` symlink resolves).
 
 ---
 
-## /rrr --detail
+## /wrap --detail
 
 Same flow as default but use full template:
 
@@ -116,7 +116,7 @@ Then steps 3-5 same as default.
 
 ---
 
-## /rrr --dig
+## /wrap --dig
 
 **Retrospective powered by session goldminer. No subagents.**
 
@@ -145,7 +145,7 @@ Write lesson learned, kvasir sync.
 
 ---
 
-## /rrr --deep
+## /wrap --deep
 
 Read `DEEP.md` in this skill directory. Only mode that uses subagents.
 

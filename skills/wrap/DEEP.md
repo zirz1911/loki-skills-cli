@@ -1,4 +1,4 @@
-# RRR --deep Mode (5 Parallel Agents)
+# WRAP --deep Mode (5 Parallel Agents)
 
 **Use for complex sessions** with lots of changes, multiple features, or when you want comprehensive analysis.
 
@@ -106,7 +106,7 @@ With --deep, lesson learned should be more comprehensive:
 kvasir_learn({
   pattern: [Full lesson content],
   concepts: [tags from all 5 agents],
-  source: "rrr --deep: [repo]"
+  source: "wrap --deep: [repo]"
 })
 ```
 
@@ -114,5 +114,5 @@ kvasir_learn({
 
 ```bash
 git add Kvasir/memory/retrospectives/ Kvasir/memory/learnings/
-git commit -m "rrr: deep analysis - [slug]"
+git commit -m "wrap: deep analysis - [slug]"
 ```
