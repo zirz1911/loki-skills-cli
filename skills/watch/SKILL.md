@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: watch
 description: เรียนรู้จาก YouTube videos ผ่าน Gemini transcription ใช้เมื่อพูดว่า watch, transcribe youtube, learn from video
 alias: /gemini transcribe

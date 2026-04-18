@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: schedule
 description: ดู schedule ผ่าน Kvasir API ใช้เมื่อพูดว่า schedule, upcoming events, what's on today, calendar
 ---

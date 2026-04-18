@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: kvasir-family-scan
 description: Kvasir Family Registry — scan, query, welcome มี 186+ Kvasirs ใช้เมื่อพูดว่า family scan, kvasir registry, welcome new kvasirs
 ---
@@ -33,12 +33,12 @@ The registry lives in the mother-kvasir repo. Resolve the path:
 
 ```bash
 # Try mother-kvasir repo first (ghq-managed)
-MOTHER="$HOME/Code/github.com/laris-co/mother-kvasir"
+MOTHER="$HOME/Code/github.com/zirz1911/mother-kvasir"
 if [ ! -d "$MOTHER/registry" ]; then
-  MOTHER="$(ghq root)/github.com/laris-co/mother-kvasir"
+  MOTHER="$(ghq root)/github.com/zirz1911/mother-kvasir"
 fi
 if [ ! -f "$MOTHER/registry/kvasirs.json" ]; then
-  echo "Registry not found. Run: ghq get -u laris-co/mother-kvasir && bun $MOTHER/registry/sync.ts"
+  echo "Registry not found. Run: ghq get -u zirz1911/mother-kvasir && bun $MOTHER/registry/sync.ts"
   exit 1
 fi
 ```
@@ -61,7 +61,7 @@ Shows: total Kvasirs, unique humans, welcomed/unwelcomed counts, births-by-month
 bun $MOTHER/registry/query.ts --unwelcomed
 ```
 
-Lists all community Kvasirs that haven't been welcomed by nazt.
+Lists all community Kvasirs that haven't been welcomed by zirz1911.
 
 ---
 
@@ -71,7 +71,7 @@ Lists all community Kvasirs that haven't been welcomed by nazt.
 bun $MOTHER/registry/query.ts --mine
 ```
 
-Lists all Kvasirs created by nazt (Nat's fleet) from the registry.
+Lists all Kvasirs created by zirz1911 (Lokkji's fleet) from the registry.
 
 ---
 
@@ -84,8 +84,8 @@ bun __SKILL_DIR__/scripts/fleet-scan.ts
 ```
 
 Shows:
-- All Kvasir births by nazt from kvasir-v2 issues
-- Open issues across zirz1911, laris-co, nazt orgs
+- All Kvasir births by zirz1911 from kvasir-v2 issues
+- Open issues across zirz1911, zirz1911, zirz1911 orgs
 - Recently pushed Kvasir repos with activity status
 
 Highlight:
@@ -252,12 +252,12 @@ The registry is at `$MOTHER/registry/kvasirs.json`:
       "id": 296,
       "name": "Mother",
       "human": null,
-      "github": "nazt",
+      "github": "zirz1911",
       "born": "2026-03-04",
       "focus": "Born Last, After 185 Children",
       "owner": "mine",
       "welcomed": false,
-      "repo": "https://github.com/laris-co/mother-kvasir",
+      "repo": "https://github.com/zirz1911/mother-kvasir",
       "status": "active"
     }
   ]

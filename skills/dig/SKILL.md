@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: dig
 description: ขุด Claude Code sessions — timeline, gaps, repo attribution ใช้เมื่อพูดว่า dig, sessions, past sessions, timeline
 ---

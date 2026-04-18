@@ -9,7 +9,7 @@
 import { $ } from "bun";
 
 const ORACLE_REPO = "zirz1911/Loki-Kvasir";
-const ORGS = ["zirz1911", "laris-co", "nazt"];
+const ORGS = ["zirz1911"];
 const BIRTH_PATTERN = /awaken|born|birth|enter.*chat|hello|สวัสดี|arrived/i;
 
 // --- Part 1: Kvasir Births from kvasir-v2 ---

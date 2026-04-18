@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: worktree
 description: Git worktree สำหรับทำงานแบบ parallel ใช้เมื่อพูดว่า worktree, parallel work, new agent, start parallel
 ---

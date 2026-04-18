@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Lokkji's Safe Coder principles — กฎเหล็กก่อนแตะโค้ด — Soul Brews Studio
+origin: Lokkji's Safe Coder principles — กฎเหล็กก่อนแตะโค้ด
 name: safe-code
 description: workflow การเขียนโค้ดอย่างปลอดภัย — อ่านก่อน วางแผนก่อนเปลี่ยน ไม่ลบโดยไม่ถาม ใช้เมื่อพูดว่า safe-code, code safely
 ---

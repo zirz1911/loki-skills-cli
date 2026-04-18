@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: learn
 description: สำรวจ codebase ด้วย Haiku agents แบบ parallel มี mode: --fast, default, --deep ใช้เมื่อพูดว่า learn [repo], explore codebase
 ---

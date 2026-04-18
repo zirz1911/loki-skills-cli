@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: merged
 description: ทำความสะอาดหลัง merge — switch to main, pull latest, ลบ branch ที่ merge แล้ว ใช้หลัง PR ถูก merge
 ---

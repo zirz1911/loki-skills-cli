@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: feel
 description: บันทึกอารมณ์ความรู้สึก ใช้เมื่อพูดว่า feel, feeling, mood, tired, sleepy, frustrated, happy, excited
 ---

@@ -32,7 +32,7 @@ export const now = () => new Date().toTimeString().slice(0, 5);
 // --- Slug parsing ---
 export type RepoInfo = { owner: string; name: string; slug: string };
 
-export function parseRepo(input: string, defaultOrg = "laris-co"): RepoInfo {
+export function parseRepo(input: string, defaultOrg = "zirz1911"): RepoInfo {
   if (input.startsWith("http")) {
     const slug = input.replace("https://github.com/", "").replace(".git", "");
     const [owner, name] = slug.split("/");

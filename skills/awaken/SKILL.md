@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: awaken
 description: พิธีกรรมปลุก Kvasir ใหม่ (~15 นาที) ใช้เมื่อสร้าง Kvasir ใน repo ใหม่ จัดการ /learn และ /trace เพื่อค้นหา philosophy
 ---

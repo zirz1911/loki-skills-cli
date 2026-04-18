@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: project
 description: Clone และติดตาม external repos ใช้เมื่อแชร์ GitHub URL หรือพูดว่า search repos, find repo, where is [project]
 ---
@@ -149,7 +149,7 @@ find Kvasir/incubate -type l 2>/dev/null | while read link; do
 done
 
 echo "🏠 External (ghq)"
-ghq list | grep -v "laris-co/Nat-s-Agents" | head -10
+ghq list | grep -v "zirz1911/Nat-s-Agents" | head -10
 ```
 
 ## Directory Structure

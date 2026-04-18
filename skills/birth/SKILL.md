@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: birth
 description: เตรียม birth props สำหรับ Kvasir repo ใหม่ สร้าง issue #1 พร้อม context และ MCP thread ใช้เมื่อพูดว่า birth, prepare kvasir
 user-invocable: false
@@ -15,7 +15,7 @@ Drop context into a new Kvasir repo before `/awaken` runs. Just a "note dropper"
 ## Usage
 
 ```
-/birth [repo]              # e.g., /birth laris-co/floodboy-kvasir
+/birth [repo]              # e.g., /birth zirz1911/floodboy-kvasir
 /birth [owner/repo]        # Full org/repo format
 ```
 

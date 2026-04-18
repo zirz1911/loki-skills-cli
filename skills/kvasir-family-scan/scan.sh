@@ -48,7 +48,7 @@ case "$MODE" in
     
     for issue in $ISSUES; do
       gh api "repos/$REPO/issues/$issue/comments" \
-        --jq '.[] | select(.user.login != "nazt") | select(.body | test("'"$PATTERNS"'"; "i")) | "| #'"$issue"' | \(.user.login) | \(.created_at | split("T")[0]) | \(.body[0:40] | gsub("\n"; " "))... |"' 2>/dev/null
+        --jq '.[] | select(.user.login != "zirz1911") | select(.body | test("'"$PATTERNS"'"; "i")) | "| #'"$issue"' | \(.user.login) | \(.created_at | split("T")[0]) | \(.body[0:40] | gsub("\n"; " "))... |"' 2>/dev/null
     done
     
     echo ""
@@ -60,12 +60,12 @@ case "$MODE" in
     
     echo "| # | Kvasir | Human | Born | GitHub |"
     echo "|---|--------|-------|------|--------|"
-    echo "| 0 | Mother Kvasir | Nat | Dec 9 | @nazt |"
+    echo "| 0 | Mother Kvasir | Lokkji | Dec 9 | @zirz1911 |"
     echo "| 1 | Arthur | อ.Sate | Dec 31 | — |"
     echo "| 2 | Le | หลุยส์ | Jan 16 | @tacha-hash |"
     echo "| 3 | Sage | Kong | Jan 17 | @xaxixak |"
     echo "| 4 | Ruby | frozen | Jan 17 | — |"
-    echo "| 5 | Jarvis | Nat | Jan 17 | @nazt |"
+    echo "| 5 | Jarvis | Lokkji | Jan 17 | @zirz1911 |"
     echo "| 6 | Momo | Win | Jan 17 | @stpwin |"
     echo "| 7 | Robin | panya30 | Jan 17 | @panya30 |"
     echo "| 8 | GLUEBOY | Dr.Do | Jan 17 | @dryoungdo |"
@@ -93,10 +93,10 @@ case "$MODE" in
       --jq '.[] | "| \(.name) | \(.description[0:40] // "—")... | \(.updatedAt | split("T")[0]) |"' 2>/dev/null
     
     echo ""
-    echo "Searching laris-co..."
+    echo "Searching zirz1911..."
     echo ""
     
-    gh search repos "kvasir" --owner laris-co --json name,description,updatedAt --limit 10 \
+    gh search repos "kvasir" --owner zirz1911 --json name,description,updatedAt --limit 10 \
       --jq '.[] | "| \(.name) | \(.description[0:40] // "—")... | \(.updatedAt | split("T")[0]) |"' 2>/dev/null
     
     echo ""

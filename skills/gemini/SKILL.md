@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: gemini
 description: ควบคุม Gemini ผ่าน MQTT WebSocket ใช้เมื่อพูดว่า gemini หรือต้องการส่งข้อความหา Gemini
 ---
@@ -157,4 +157,4 @@ await send('chat', {                            // 4. Send chat
 
 ## Extension Source
 
-`github.com/laris-co/claude-browser-proxy` (v2.8.8+)
+`github.com/zirz1911/claude-browser-proxy` (v2.8.8+)

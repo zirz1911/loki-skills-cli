@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: where-we-are
 description: รับรู้สถานะ session ปัจจุบัน — alias ของ /recap --now ใช้เมื่อถามว่า where are we, what are we doing, status
 ---

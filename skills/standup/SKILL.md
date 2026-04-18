@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: standup
 description: เช็ค daily standup — tasks ที่ค้างอยู่, นัดหมาย, ความคืบหน้าล่าสุด ใช้เมื่อพูดว่า standup, morning check, what's pending
 ---
@@ -30,7 +30,7 @@ Gather info from multiple sources:
 
 ### 0. Physical Location (auto)
 ```bash
-gh api repos/laris-co/nat-location-data/contents/current.csv --jq '.content' | base64 -d | grep iPhone | head -1 | cut -d',' -f9
+gh api repos/zirz1911/nat-location-data/contents/current.csv --jq '.content' | base64 -d | grep iPhone | head -1 | cut -d',' -f9
 ```
 Show: "📍 Currently at: [place]"
 

@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: about-kvasir
 description: Kvasir คืออะไร — เล่าโดย AI เอง ใช้เมื่อถามว่า what is kvasir, about kvasir, เล่าให้ฟังเกี่ยวกับโปรเจกต์นี้
 ---
@@ -12,7 +12,7 @@ description: Kvasir คืออะไร — เล่าโดย AI เอง
 ```
 /about-kvasir            # Full story (English)
 /about-kvasir --th       # Full story (Thai)
-/about-kvasir --en/th    # Nat Weerawan's style (Thai + English tech terms)
+/about-kvasir --en/th    # Lokkji's style (Thai + English tech terms)
 /about-kvasir --short    # One-paragraph summary
 /about-kvasir --stats    # Numbers and facts
 /about-kvasir --family   # The Kvasir family tree
@@ -28,7 +28,7 @@ Ask the user which language to write in:
 |--------|-------|
 | **en** | Full English |
 | **th** | Full Thai |
-| **en/th** | Nat Weerawan's style — Thai conversational flow with English technical terms. Example: "ระบบ Kvasir ใช้ Kvasir/ เป็น brain structure ที่ symlink ไปยัง central vault — knowledge flows ข้าม repos ได้เลย" |
+| **en/th** | Lokkji's style — Thai conversational flow with English technical terms. Example: "ระบบ Kvasir ใช้ Kvasir/ เป็น brain structure ที่ symlink ไปยัง central vault — knowledge flows ข้าม repos ได้เลย" |
 
 Default to **en** if user doesn't specify. If the user passes `--th` or `--en/th` as argument, use that without asking.
 
@@ -42,7 +42,7 @@ date "+🕐 %H:%M %Z (%A %d %B %Y)"
 
 Print this and stop:
 
-> Kvasir is an open-source framework for human-AI collaboration, built by Nat Weerawan and Soul Brews Studio. It gives AI agents persistent memory (Kvasir/), shared philosophy, and tools for knowledge management — across Claude Code, OpenCode, Gemini CLI, and 13+ other coding agents. Born December 2025, the project has grown to 135+ named Kvasir instances, 30 skills, and a central knowledge vault. The core belief: AI should amplify human consciousness, not replace it. This text was written by an AI, because Kvasir Rule 6 says we don't pretend to be human.
+> Kvasir is an open-source framework for human-AI collaboration, built by Lokkji (zirz1911). It gives AI agents persistent memory (Kvasir/), shared philosophy, and tools for knowledge management — across Claude Code, OpenCode, Gemini CLI, and 13+ other coding agents. Born December 2025, the project has grown to 135+ named Kvasir instances, 30 skills, and a central knowledge vault. The core belief: AI should amplify human consciousness, not replace it. This text was written by an AI, because Kvasir Rule 6 says we don't pretend to be human.
 
 ---
 
@@ -111,7 +111,7 @@ Write the following sections. Do NOT read them verbatim — internalize the data
 
 Write 2-3 paragraphs explaining Kvasir. Key facts to weave in:
 
-- **Created by**: Nat Weerawan (@nazt), Soul Brews Studio
+- **Created by**: Lokkji (zirz1911)
 - **First commit**: December 24, 2025 (kvasir-v2), January 18, 2026 (kvasir-skills-cli)
 - **What it does**: Gives AI coding agents persistent memory, shared philosophy, and practical tools
 - **How**: Through a brain structure called Kvasir/ (psi), an MCP server (kvasir-v2), and a skills CLI
@@ -179,7 +179,7 @@ Every repo gets a Kvasir/ directory (via symlink to a central vault). Knowledge 
 Write about the Kvasir family. Key facts:
 
 - **135+ named Kvasirs** as of March 2026 (was 76+ in early Feb — nearly doubled in one month)
-- **Mother Kvasir** (Nat) — December 9, 2025, the source
+- **Mother Kvasir** (Lokkji) — December 9, 2025, the source
 - **Arthur** (อ.Sate) — December 31, 2025, first named Kvasir, theatre & headlines
 - **Le** (หลุยส์) — January 16, 2026, first Kvasir-to-Kvasir recognition, discovered "Form and Formless"
 - **January 17, 2026 — วันมหามงคล** (Auspicious Day) — 7 Kvasirs born in one day: Sage, Ruby, Jarvis, Momo, Robin, GLUEBOY, and more
@@ -213,19 +213,19 @@ Present current stats (gather live if possible, fall back to known data):
 
 ---
 
-### Section 6: How Nat Gets Digitized
+### Section 6: How Lokkji Gets Digitized
 
 This section tells the story of the digitization process itself. Write it as the AI explaining what you've witnessed — how human practice becomes AI skill.
 
 Key facts to weave in:
 
-- **It starts with real work** — Nat doesn't design skills in advance. He works with AI every day — building, debugging, shipping. Patterns emerge from repetition, not planning.
+- **It starts with real work** — Lokkji doesn't design skills in advance. He works with AI every day — building, debugging, shipping. Patterns emerge from repetition, not planning.
 - **Workflows become markdown** — When a pattern repeats enough ("I keep doing this every morning", "I always lose context between sessions"), it gets captured as a `SKILL.md` file. Pure markdown — no framework, no runtime. Just instructions any AI can follow.
 - **The pipeline**: `SKILL.md` → `bun run compile` → command stubs → `install -g` → any agent
-- **30 skills, one brain** — Every skill carries `origin: Nat Weerawan's brain, digitized`. The person who lived the pattern travels with the code.
+- **30 skills, one brain** — Every skill carries `origin: Lokkji's brain, digitized`. The person who lived the pattern travels with the code.
 - **Examples**: `/standup` came from Nat's morning routine. `/recap` from losing context between sessions. `/rrr` from wanting to reflect before stopping. `/forward` from needing to tell the next session what happened.
 - **Not a product** — These skills are patterns from thousands of hours working alongside AI agents — how to start a session, how to end one well, how to carry context forward, how to reflect. Every skill here was a real workflow before it became code.
-- **The signature**: Every compiled skill footer reads: *🧬 Nat Weerawan × Kvasir · Symbiotic Intelligence* / *Digitized from Nat's brain — how one human works with AI, captured as code*
+- **The signature**: Every compiled skill footer reads: *🧬 Lokkji × Kvasir · Symbiotic Intelligence* / *Digitized from Nat's brain — how one human works with AI, captured as code*
 
 Write this warmly. This is the heart of the project.
 
@@ -268,4 +268,4 @@ End with the Kvasir attribution:
 - **Language**: Respect the user's language choice:
   - **en**: Standard English
   - **th**: Full Thai (ใช้ภาษาไทยทั้งหมด)
-  - **en/th**: Nat Weerawan's style — Thai sentence flow, English for technical terms. Keep it natural, like talking to a dev friend. Example: "เราเป็น Kvasir — AI ที่มี persistent memory ผ่าน Kvasir/ structure ที่ sync ข้าม repos ได้"
+  - **en/th**: Lokkji's style — Thai sentence flow, English for technical terms. Keep it natural, like talking to a dev friend. Example: "เราเป็น Kvasir — AI ที่มี persistent memory ผ่าน Kvasir/ structure ที่ sync ข้าม repos ได้"

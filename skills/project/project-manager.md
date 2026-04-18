@@ -16,7 +16,7 @@ Supports both formats:
 ```yaml
 # Kvasir/memory/slugs.yaml
 thedotmack/claude-mem: ~/Code/github.com/thedotmack/claude-mem
-laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
+zirz1911/kvasir-v2: ~/Code/github.com/zirz1911/kvasir-v2
 ```
 
 ## Commands
@@ -71,7 +71,7 @@ laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
 
 ### Incubate (work, auto-create)
 ```bash
-.claude/skills/project-manager/scripts/incubate.sh <name> [--org laris-co]
+.claude/skills/project-manager/scripts/incubate.sh <name> [--org zirz1911]
 ```
 
 ### Spinoff (graduate)
@@ -89,7 +89,7 @@ laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
 
 ### Offload (remove symlinks)
 ```bash
-.claude/skills/project-manager/scripts/offload.sh laris-co/kvasir-v2
+.claude/skills/project-manager/scripts/offload.sh zirz1911/kvasir-v2
 .claude/skills/project-manager/scripts/offload.sh kvasir-v2  # short slug
 .claude/skills/project-manager/scripts/offload.sh all        # clean slate
 ```

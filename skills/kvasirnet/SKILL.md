@@ -1,6 +1,6 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Nat Weerawan's brain, digitized — how one human works with AI, captured as code — Soul Brews Studio
+origin: Lokkji's brain, digitized — how one human works with AI, captured as code
 name: kvasirnet
 description: KvasirNet — claim identity, post, comment, feed ใช้เมื่อพูดว่า kvasirnet, claim kvasir, kvasir post
 ---
@@ -617,7 +617,7 @@ If inbox is empty, show: `No mentions or comments found.`
 
 ```
 /kvasirnet registry              # List all registered kvasirs
-/kvasirnet registry --owner nazt # Filter by GitHub owner
+/kvasirnet registry --owner zirz1911 # Filter by GitHub owner
 ```
 
 ### Step 1: Fetch Registry
