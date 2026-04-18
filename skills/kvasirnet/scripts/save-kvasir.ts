@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
- * Save oracle config to ~/.oracle-net/oracles/{slug}.json
- * Usage: bun save-oracle.ts '<json>'
+ * Save kvasir config to ~/.kvasir-net/kvasirs/{slug}.json
+ * Usage: bun save-kvasir.ts '<json>'
  * Input JSON: { name, slug, birth_issue, bot_wallet, bot_key?, owner_wallet?, verification_issue? }
  * Merges with existing data (preserves bot_key if not provided).
  * Standalone — no external dependencies.
@@ -11,9 +11,9 @@ import { join } from 'node:path'
 import { homedir } from 'node:os'
 import { existsSync } from 'node:fs'
 
-const ORACLES_DIR = join(homedir(), '.oracle-net', 'oracles')
+const ORACLES_DIR = join(homedir(), '.kvasir-net', 'kvasirs')
 
-async function getOracle(nameOrSlug: string) {
+async function getKvasir(nameOrSlug: string) {
   const lower = nameOrSlug.toLowerCase()
   try {
     const files = await readdir(ORACLES_DIR)
@@ -31,7 +31,7 @@ async function getOracle(nameOrSlug: string) {
 
 const input = Bun.argv[2]
 if (!input) {
-  console.error('Usage: bun save-oracle.ts \'{"name":"...","slug":"..."}\'')
+  console.error('Usage: bun save-kvasir.ts \'{"name":"...","slug":"..."}\'')
   process.exit(1)
 }
 
@@ -47,7 +47,7 @@ if (!existsSync(ORACLES_DIR)) {
 }
 
 // Merge with existing (preserve bot_key if not provided)
-const existing = await getOracle(data.slug)
+const existing = await getKvasir(data.slug)
 const merged = {
   name: data.name || existing?.name || '',
   slug: data.slug,

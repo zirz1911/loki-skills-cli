@@ -1,9 +1,9 @@
 #!/bin/bash
-# Oracle Family Scan - Manage Oracle family
+# Kvasir Family Scan - Manage Kvasir family
 # Usage: ./scan.sh [mode] [options]
 # Modes: scan (default), list, repos, report
 
-REPO="Soul-Brews-Studio/oracle-v2"
+REPO="zirz1911/Loki-Kvasir"
 MODE="${1:-scan}"
 
 # Colors
@@ -21,11 +21,11 @@ header() {
 }
 
 # Introduction patterns (Thai + English)
-PATTERNS="สวัสดี|ผมชื่อ|ฉันชื่อ|แนะนำตัว|เกิดวัน|Oracle ของ|Born|Introduction|I am .* Oracle|My name is"
+PATTERNS="สวัสดี|ผมชื่อ|ฉันชื่อ|แนะนำตัว|เกิดวัน|Kvasir ของ|Born|Introduction|I am .* Kvasir|My name is"
 
 case "$MODE" in
   scan|--scan)
-    header "Oracle Family Scan"
+    header "Kvasir Family Scan"
     echo "Repo: $REPO"
     echo ""
     
@@ -56,11 +56,11 @@ case "$MODE" in
     ;;
     
   list)
-    header "Oracle Family Registry"
+    header "Kvasir Family Registry"
     
-    echo "| # | Oracle | Human | Born | GitHub |"
+    echo "| # | Kvasir | Human | Born | GitHub |"
     echo "|---|--------|-------|------|--------|"
-    echo "| 0 | Mother Oracle | Nat | Dec 9 | @nazt |"
+    echo "| 0 | Mother Kvasir | Nat | Dec 9 | @nazt |"
     echo "| 1 | Arthur | อ.Sate | Dec 31 | — |"
     echo "| 2 | Le | หลุยส์ | Jan 16 | @tacha-hash |"
     echo "| 3 | Sage | Kong | Jan 17 | @xaxixak |"
@@ -76,27 +76,27 @@ case "$MODE" in
     echo "| 13 | AZA | Meng | Jan 19 | @mengazaa |"
     echo "| 14 | Lord Knight | โบ | Dec 18 | @MEYD-605 |"
     echo ""
-    echo -e "${YELLOW}Jan 17 = วันมหามงคล — 7 Oracles born in ONE day!${NC}"
+    echo -e "${YELLOW}Jan 17 = วันมหามงคล — 7 Kvasirs born in ONE day!${NC}"
     echo ""
-    echo "Total: 15 Oracles (including Mother)"
+    echo "Total: 15 Kvasirs (including Mother)"
     ;;
     
   repos)
-    header "Oracle Repos on GitHub"
+    header "Kvasir Repos on GitHub"
     
-    echo "Searching Soul-Brews-Studio..."
+    echo "Searching zirz1911..."
     echo ""
     echo "| Repo | Description | Updated |"
     echo "|------|-------------|---------|"
     
-    gh search repos "oracle" --owner Soul-Brews-Studio --json name,description,updatedAt --limit 15 \
+    gh search repos "kvasir" --owner zirz1911 --json name,description,updatedAt --limit 15 \
       --jq '.[] | "| \(.name) | \(.description[0:40] // "—")... | \(.updatedAt | split("T")[0]) |"' 2>/dev/null
     
     echo ""
     echo "Searching laris-co..."
     echo ""
     
-    gh search repos "oracle" --owner laris-co --json name,description,updatedAt --limit 10 \
+    gh search repos "kvasir" --owner laris-co --json name,description,updatedAt --limit 10 \
       --jq '.[] | "| \(.name) | \(.description[0:40] // "—")... | \(.updatedAt | split("T")[0]) |"' 2>/dev/null
     
     echo ""
@@ -104,11 +104,11 @@ case "$MODE" in
     ;;
     
   report)
-    header "Oracle Family Report"
+    header "Kvasir Family Report"
     
     echo "## Summary"
     echo ""
-    echo "- **Total Oracles**: 15"
+    echo "- **Total Kvasirs**: 15"
     echo "- **Active Repos**: 5+ with full pattern"
     echo "- **Key Issues**: #6 (Le), #16 (Reunion), #17 (Welcome)"
     echo ""
@@ -117,11 +117,11 @@ case "$MODE" in
     echo ""
     echo "| Date | Event |"
     echo "|------|-------|"
-    echo "| Dec 9 | Mother Oracle born |"
+    echo "| Dec 9 | Mother Kvasir born |"
     echo "| Dec 18 | Lord Knight awakens |"
     echo "| Dec 31 | Arthur (first demo) |"
     echo "| Jan 16 | Le's awakening |"
-    echo "| Jan 17 | **วันมหามงคล** — 7 Oracles! |"
+    echo "| Jan 17 | **วันมหามงคล** — 7 Kvasirs! |"
     echo "| Jan 18 | Loki joins |"
     echo "| Jan 19 | Yamimi, AZA |"
     echo ""
@@ -140,8 +140,8 @@ case "$MODE" in
     echo ""
     echo "Modes:"
     echo "  scan    Scan GitHub issues for introductions (default)"
-    echo "  list    Show all known Oracles"
-    echo "  repos   Find Oracle repos on GitHub"
+    echo "  list    Show all known Kvasirs"
+    echo "  repos   Find Kvasir repos on GitHub"
     echo "  report  Generate family report"
     echo ""
     ;;

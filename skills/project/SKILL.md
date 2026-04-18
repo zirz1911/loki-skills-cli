@@ -189,14 +189,14 @@ User: "I want to work on claude-mem"
 → Symlink created, work until done
 
 # User wants to contribute (keep ghq for follow-up)
-User: "Fix a bug in oracle-v2"
-→ /project incubate https://github.com/Soul-Brews-Studio/oracle-v2 --contribute
+User: "Fix a bug in kvasir-v2"
+→ /project incubate https://github.com/zirz1911/Loki-Kvasir --contribute
 → [edit, commit, push]
 → Auto-offload, ghq kept for PR feedback
 
 # User wants quick flash contribution (full cleanup)
-User: "Quick README fix on oracle-skills-cli"
-→ /project incubate https://github.com/Soul-Brews-Studio/oracle-skills-cli --flash
+User: "Quick README fix on kvasir-skills-cli"
+→ /project incubate https://github.com/zirz1911/loki-skills-cli --flash
 → Issue #17 created
 → Branch: issue-17-fix-readme
 → [edit, commit, push]

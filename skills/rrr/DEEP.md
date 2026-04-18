@@ -67,10 +67,10 @@ Extract patterns and learnings:
 Return: Key patterns, learnings, mistakes, reusable solutions
 ```
 
-### Agent 5: Oracle Memory Search
+### Agent 5: Kvasir Memory Search
 ```
-Search Oracle for related context:
-- oracle_search("[session focus]")
+Search Kvasir for related context:
+- kvasir_search("[session focus]")
 - Check ψ/memory/learnings/ for similar topics
 - Find past retrospectives on similar work
 - What did we learn before?
@@ -89,7 +89,7 @@ Include all standard sections PLUS:
 - Architecture impact (from Agent 2)
 - Detailed timeline (from Agent 3)
 - Extracted patterns (from Agent 4)
-- Oracle connections (from Agent 5)
+- Kvasir connections (from Agent 5)
 
 ## Step 3: Write Lesson Learned
 
@@ -100,10 +100,10 @@ With --deep, lesson learned should be more comprehensive:
 - Connections to past learnings
 - Confidence levels for each insight
 
-## Step 4: Sync to Oracle
+## Step 4: Sync to Kvasir
 
 ```
-oracle_learn({
+kvasir_learn({
   pattern: [Full lesson content],
   concepts: [tags from all 5 agents],
   source: "rrr --deep: [repo]"

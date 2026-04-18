@@ -47,7 +47,7 @@ Located in `src/skills/gemini/scripts/`:
 | `full-smooth.ts` | Complete flow demo |
 | `youtube-transcribe.ts` | Transcribe YouTube video |
 
-**Note:** For YouTube learning, use `/watch` skill which includes Oracle integration.
+**Note:** For YouTube learning, use `/watch` skill which includes Kvasir integration.
 
 ### Run Scripts
 

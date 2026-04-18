@@ -1,18 +1,18 @@
 #!/usr/bin/env bun
-// fleet-scan.ts - My Oracle fleet status via gh CLI
+// fleet-scan.ts - My Kvasir fleet status via gh CLI
 // Usage: bun fleet-scan.ts
 //
-// Part 1: Oracle births from oracle-v2 issues (single API call)
+// Part 1: Kvasir births from kvasir-v2 issues (single API call)
 // Part 2: Open issues across orgs
-// Part 3: Recently pushed Oracle repos
+// Part 3: Recently pushed Kvasir repos
 
 import { $ } from "bun";
 
-const ORACLE_REPO = "Soul-Brews-Studio/oracle-v2";
-const ORGS = ["Soul-Brews-Studio", "laris-co", "nazt"];
+const ORACLE_REPO = "zirz1911/Loki-Kvasir";
+const ORGS = ["zirz1911", "laris-co", "nazt"];
 const BIRTH_PATTERN = /awaken|born|birth|enter.*chat|hello|สวัสดี|arrived/i;
 
-// --- Part 1: Oracle Births from oracle-v2 ---
+// --- Part 1: Kvasir Births from kvasir-v2 ---
 type Birth = { number: number; title: string; date: string; author: string };
 
 const birthIssuesRaw = await $`gh issue list --repo ${ORACLE_REPO} --state all --limit 300 --json number,title,createdAt,author --jq '.[] | "\(.number)|\(.title)|\(.createdAt | split("T")[0])|\(.author.login)"'`.text();
@@ -69,7 +69,7 @@ await Promise.all(
 
 allIssues.sort((a, b) => b.updated.localeCompare(a.updated));
 
-// --- Part 3: Recently pushed repos (Oracle pattern) ---
+// --- Part 3: Recently pushed repos (Kvasir pattern) ---
 type RepoActivity = { name: string; pushed: string; daysAgo: number };
 const recentRepos: RepoActivity[] = [];
 
@@ -91,10 +91,10 @@ await Promise.all(
 recentRepos.sort((a, b) => a.daysAgo - b.daysAgo);
 
 // --- Output ---
-console.log("# My Oracle Fleet\n");
+console.log("# My Kvasir Fleet\n");
 
 // Births summary
-console.log(`## Oracle Family — ${allBirths.length} births, ${uniqueAuthors.size} unique humans\n`);
+console.log(`## Kvasir Family — ${allBirths.length} births, ${uniqueAuthors.size} unique humans\n`);
 console.log("### Growth by Month\n");
 console.log("| Month | Births |");
 console.log("|-------|--------|");
@@ -105,14 +105,14 @@ for (const [month, count] of [...byMonth.entries()].sort()) {
 
 if (thisWeek.length) {
   console.log(`\n### Recent Births (${thisWeek.length} in last 4 days)\n`);
-  console.log("| # | Oracle | Author | Date |");
+  console.log("| # | Kvasir | Author | Date |");
   console.log("|---|--------|--------|------|");
   for (const b of thisWeek) {
-    // Extract oracle name: strip emoji, "Oracle", "Awakens", etc.
+    // Extract kvasir name: strip emoji, "Kvasir", "Awakens", etc.
     let name = b.title
       .replace(/[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}]/gu, "") // emoji
       .replace(/\[Birth\]\s*/i, "")
-      .replace(/\bOracle\b/gi, "")
+      .replace(/\bKvasir\b/gi, "")
       .replace(/\b(Awakens?|Re-Awakens?|born|Birth|arrived|enter.*chat|has entered)\b/gi, "")
       .replace(/[—–\-:].*/g, "") // strip subtitle after dash
       .trim()

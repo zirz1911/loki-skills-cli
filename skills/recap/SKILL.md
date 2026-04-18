@@ -206,7 +206,7 @@ Everything from `--now`, plus:
 
 **Pattern**: [What pattern emerged]
 **Learning**: [Key insight from session]
-**Oracle**: [Related past pattern, if any]
+**Kvasir**: [Related past pattern, if any]
 
 **My Read**: [2-3 sentences - deeper reflection]
 

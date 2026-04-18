@@ -6,11 +6,11 @@ description: เรียนรู้จาก YouTube videos ผ่าน Gemin
 alias: /gemini transcribe
 ---
 
-# /watch - YouTube → Gemini → Oracle Knowledge
+# /watch - YouTube → Gemini → Kvasir Knowledge
 
-**Alias for `/gemini transcribe`** with Oracle integration.
+**Alias for `/gemini transcribe`** with Kvasir integration.
 
-Learn from YouTube videos by sending to Gemini for transcription, then indexing to Oracle.
+Learn from YouTube videos by sending to Gemini for transcription, then indexing to Kvasir.
 
 ## Usage
 
@@ -81,10 +81,10 @@ bun src/skills/watch/scripts/save-learning.ts "$TITLE" "$URL" "$VIDEO_ID" "$TRAN
 
 Or manually create a learning file at `ψ/memory/learnings/YYYY-MM-DD_video-slug.md`.
 
-### Step 4: Index to Oracle
+### Step 4: Index to Kvasir
 
 ```
-oracle_learn({
+kvasir_learn({
   pattern: "YouTube transcript: [TITLE] - [key takeaways summary]",
   concepts: ["youtube", "transcript", "video", "[topic-tags from content]"],
   source: "/watch skill"
@@ -104,10 +104,10 @@ oracle_learn({
 
 ### Saved To
 - Learning: ψ/memory/learnings/[DATE]_[SLUG].md
-- Oracle: Indexed ✓
+- Kvasir: Indexed ✓
 
 ### Quick Access
-`/trace [SLUG]` or `oracle_search("[TITLE]")`
+`/trace [SLUG]` or `kvasir_search("[TITLE]")`
 ```
 
 ## IMPORTANT: Save Gemini Conversation Link

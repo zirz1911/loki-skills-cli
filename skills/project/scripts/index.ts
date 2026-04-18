@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// index.ts - Index manifest files to Oracle knowledge base
+// index.ts - Index manifest files to Kvasir knowledge base
 import { $ } from "bun";
 import { existsSync, readdirSync } from "fs";
 import { join, basename } from "path";

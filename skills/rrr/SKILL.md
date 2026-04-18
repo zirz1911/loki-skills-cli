@@ -65,10 +65,10 @@ Write immediately, no prompts. If pulse data was found, weave it into the narrat
 
 **Path**: `ψ/memory/learnings/YYYY-MM-DD_slug.md`
 
-### 4. Oracle Sync
+### 4. Kvasir Sync
 
 ```
-oracle_learn({ pattern: [lesson content], concepts: [tags], source: "rrr: REPO" })
+kvasir_learn({ pattern: [lesson content], concepts: [tags], source: "rrr: REPO" })
 ```
 
 ### 5. Save
@@ -139,7 +139,7 @@ Also run pulse context (step 1.5 from default mode) and weave into narrative.
 
 ### 3-5. Same as default steps 3-5
 
-Write lesson learned, oracle sync.
+Write lesson learned, kvasir sync.
 
 **Do NOT `git add ψ/`** — vault files are shared state, not committed to repos.
 
@@ -156,5 +156,5 @@ Read `DEEP.md` in this skill directory. Only mode that uses subagents.
 - **NO SUBAGENTS**: Never use Task tool or spawn subagents (only `--deep` may)
 - AI Diary: 150+ words, vulnerability, first-person
 - Honest Feedback: 100+ words, 3 friction points
-- Oracle Sync: REQUIRED after every lesson learned
+- Kvasir Sync: REQUIRED after every lesson learned
 - Time Zone: GMT+7 (Bangkok)

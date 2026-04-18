@@ -62,9 +62,9 @@ Read the JSON output and display as a table. Sessions are chronological (oldest 
 | # | Date | Session | Min | Repo | Msgs | Focus |
 |---|------|---------|-----|------|------|-------|
 |   |      | · · · sleeping / offline | | | | |
-| 1 | 02-21 | 08:40–09:08 | 28m | oracle-skills-cli | 5 | Wire /rrr to read pulse data |
+| 1 | 02-21 | 08:40–09:08 | 28m | kvasir-skills-cli | 5 | Wire /rrr to read pulse data |
 |   |      | · · · 45m gap | | | | |
-| 2 | 02-21 | 09:55–10:23 | 28m | homelab | 3 | oracle-pulse birth + CLI flag |
+| 2 | 02-21 | 09:55–10:23 | 28m | homelab | 3 | kvasir-pulse birth + CLI flag |
 |   |      | · · · no session yet | | | | |
 
 **Dirs scanned**: [list PROJECT_DIRS]
@@ -97,9 +97,9 @@ When `--timeline` flag is present, group sessions by date instead of a flat tabl
                   · · ·   sleeping / offline
 08:48–09:11    23m   homelab        Update Fleet Runbook + Explore black.local
 09:11–11:30   139m   homelab        Set Up KVM OpenClaw Node on black.local
-09:37–12:51   194m   Nat-s-Agents   /recap → supergateway → CF ZT → oracle-v2 dig
+09:37–12:51   194m   Nat-s-Agents   /recap → supergateway → CF ZT → kvasir-v2 dig
                   · · ·   45m gap
-12:51–13:03    12m   Nat-s-Agents   Dig All + Design oracle-v2 ← current
+12:51–13:03    12m   Nat-s-Agents   Dig All + Design kvasir-v2 ← current
                   · · ·   no session yet
 
 ## Feb 21 (Sat) — Long day: Fleet + Brewing + Skills
@@ -128,7 +128,7 @@ When `--timeline` flag is present, group sessions by date instead of a flat tabl
 
 ## No trace log
 
-`/dig` does NOT write a trace log file or call oracle_trace. It's a read-only scan. Output goes to screen only.
+`/dig` does NOT write a trace log file or call kvasir_trace. It's a read-only scan. Output goes to screen only.
 
 ---
 

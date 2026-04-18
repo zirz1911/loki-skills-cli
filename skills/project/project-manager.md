@@ -16,7 +16,7 @@ Supports both formats:
 ```yaml
 # ψ/memory/slugs.yaml
 thedotmack/claude-mem: ~/Code/github.com/thedotmack/claude-mem
-laris-co/oracle-v2: ~/Code/github.com/laris-co/oracle-v2
+laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
 ```
 
 ## Commands
@@ -29,7 +29,7 @@ laris-co/oracle-v2: ~/Code/github.com/laris-co/oracle-v2
 | `/project spinoff [name]` | Graduate to own repo | `scripts/spinoff.sh` |
 | `/project reunion [slug\|all]` | Sync learnings + offload | `scripts/reunion.sh` |
 | `/project offload [slug\|all]` | Remove symlinks (keep ghq) | `scripts/offload.sh` |
-| `/project index [slug\|all]` | Index manifests to Oracle | `scripts/index.sh` |
+| `/project index [slug\|all]` | Index manifests to Kvasir | `scripts/index.sh` |
 | `/project history [slug]` | Git timeline analysis | `scripts/history.sh` |
 
 ## Lifecycle
@@ -41,7 +41,7 @@ laris-co/oracle-v2: ~/Code/github.com/laris-co/oracle-v2
 /project spinoff   → 🎓 Graduate to own repo
 /project reunion   → 🤝 Sync learnings + offload
 /project offload   → 📤 Just remove symlinks
-/project index     → 🔮 Index manifests to Oracle
+/project index     → 🔮 Index manifests to Kvasir
 /project history   → 📊 Git activity analysis
 ```
 
@@ -89,12 +89,12 @@ laris-co/oracle-v2: ~/Code/github.com/laris-co/oracle-v2
 
 ### Offload (remove symlinks)
 ```bash
-.claude/skills/project-manager/scripts/offload.sh laris-co/oracle-v2
-.claude/skills/project-manager/scripts/offload.sh oracle-v2  # short slug
+.claude/skills/project-manager/scripts/offload.sh laris-co/kvasir-v2
+.claude/skills/project-manager/scripts/offload.sh kvasir-v2  # short slug
 .claude/skills/project-manager/scripts/offload.sh all        # clean slate
 ```
 
-### Index (Oracle)
+### Index (Kvasir)
 ```bash
 .claude/skills/project-manager/scripts/index.sh list              # show manifests
 .claude/skills/project-manager/scripts/index.sh all               # index all
@@ -122,7 +122,7 @@ laris-co/oracle-v2: ~/Code/github.com/laris-co/oracle-v2
 2. **Score** → Rank files by type (retrospectives=10, docs=5, CLAUDE.md=0)
 3. **Filter** → Skip i18n, CLAUDE.md, low-value files
 4. **Extract** → Get key content from high-value files
-5. **Learn** → Call `oracle_learn` with source attribution
+5. **Learn** → Call `kvasir_learn` with source attribution
 
 ## Offload Pattern
 
@@ -139,6 +139,6 @@ laris-co/oracle-v2: ~/Code/github.com/laris-co/oracle-v2
 - `scripts/spinoff.sh` - Move to external repo
 - `scripts/reunion.sh` - Sync learnings + optional offload
 - `scripts/offload.sh` - Remove symlinks, keep ghq
-- `scripts/index.sh` - Index manifests to Oracle
+- `scripts/index.sh` - Index manifests to Kvasir
 - `scripts/history.sh` - Git activity analysis
 - `templates/slugs.yaml` - Registry template

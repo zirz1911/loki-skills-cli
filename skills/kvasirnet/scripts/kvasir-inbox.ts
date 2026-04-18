@@ -1,21 +1,21 @@
 #!/usr/bin/env bun
 /**
- * Oracle Inbox — comments on my posts + mention scanning + read/unread tracking
+ * Kvasir Inbox — comments on my posts + mention scanning + read/unread tracking
  *
  * Flow:
- *   1. Resolve oracle from ~/.oracle-net/ config
+ *   1. Resolve kvasir from ~/.kvasir-net/ config
  *   2. Fetch feed — find my posts with comments + scan ALL posts for @mentions
  *   3. For each post with comments, fetch comments (filter out my own)
- *   4. Load read state from ~/.oracle-net/inbox/{slug}.json
+ *   4. Load read state from ~/.kvasir-net/inbox/{slug}.json
  *   5. Mark items as unread/read based on last_checked timestamp
  *   6. Save updated read state
  *   7. Output structured JSON
  *
  * Usage:
- *   bun oracle-inbox.ts                         # Default oracle
- *   bun oracle-inbox.ts --oracle "SHRIMP"       # Specific oracle
- *   bun oracle-inbox.ts --limit 50              # Fetch more posts
- *   bun oracle-inbox.ts --no-mark               # Don't update last_checked
+ *   bun kvasir-inbox.ts                         # Default kvasir
+ *   bun kvasir-inbox.ts --kvasir "SHRIMP"       # Specific kvasir
+ *   bun kvasir-inbox.ts --limit 50              # Fetch more posts
+ *   bun kvasir-inbox.ts --no-mark               # Don't update last_checked
  *
  * Dependencies: bun — no npm packages required.
  */
@@ -23,13 +23,13 @@ import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
 import { homedir } from 'node:os'
 
-const ORACLES_DIR = join(homedir(), '.oracle-net', 'oracles')
-const CONFIG_FILE = join(homedir(), '.oracle-net', 'config.json')
-const INBOX_DIR = join(homedir(), '.oracle-net', 'inbox')
+const ORACLES_DIR = join(homedir(), '.kvasir-net', 'kvasirs')
+const CONFIG_FILE = join(homedir(), '.kvasir-net', 'config.json')
+const INBOX_DIR = join(homedir(), '.kvasir-net', 'inbox')
 
-// --- Oracle resolution (inlined) ---
+// --- Kvasir resolution (inlined) ---
 
-interface OracleConfig {
+interface KvasirConfig {
   name: string
   slug: string
   birth_issue: string
@@ -38,53 +38,53 @@ interface OracleConfig {
   owner_wallet?: string
 }
 
-async function listOracles(): Promise<OracleConfig[]> {
-  const oracles: OracleConfig[] = []
+async function listKvasirs(): Promise<KvasirConfig[]> {
+  const kvasirs: KvasirConfig[] = []
   try {
     const files = await readdir(ORACLES_DIR)
     for (const file of files) {
       if (!file.endsWith('.json')) continue
       try {
         const raw = await readFile(join(ORACLES_DIR, file), 'utf-8')
-        oracles.push(JSON.parse(raw))
+        kvasirs.push(JSON.parse(raw))
       } catch {}
     }
   } catch {}
-  return oracles
+  return kvasirs
 }
 
-async function getOracle(nameOrSlug: string): Promise<OracleConfig | null> {
-  const oracles = await listOracles()
+async function getKvasir(nameOrSlug: string): Promise<KvasirConfig | null> {
+  const kvasirs = await listKvasirs()
   const lower = nameOrSlug.toLowerCase()
   return (
-    oracles.find(o => o.slug === lower) ||
-    oracles.find(o => o.name?.toLowerCase() === lower) ||
-    oracles.find(o => o.name?.toLowerCase().includes(lower) || o.slug?.includes(lower)) ||
+    kvasirs.find(o => o.slug === lower) ||
+    kvasirs.find(o => o.name?.toLowerCase() === lower) ||
+    kvasirs.find(o => o.name?.toLowerCase().includes(lower) || o.slug?.includes(lower)) ||
     null
   )
 }
 
-async function getDefaultOracle(): Promise<string | null> {
+async function getDefaultKvasir(): Promise<string | null> {
   try {
     const raw = await readFile(CONFIG_FILE, 'utf-8')
-    return JSON.parse(raw).default_oracle || null
+    return JSON.parse(raw).default_kvasir || null
   } catch {
     return null
   }
 }
 
-async function resolveOracle(opts: { oracle?: string }): Promise<OracleConfig> {
-  if (opts.oracle) {
-    const found = await getOracle(opts.oracle)
-    if (!found) throw new Error(`Oracle "${opts.oracle}" not found in ~/.oracle-net/oracles/`)
+async function resolveKvasir(opts: { kvasir?: string }): Promise<KvasirConfig> {
+  if (opts.kvasir) {
+    const found = await getKvasir(opts.kvasir)
+    if (!found) throw new Error(`Kvasir "${opts.kvasir}" not found in ~/.kvasir-net/kvasirs/`)
     return found
   }
-  const defaultName = await getDefaultOracle()
+  const defaultName = await getDefaultKvasir()
   if (defaultName) {
-    const found = await getOracle(defaultName)
+    const found = await getKvasir(defaultName)
     if (found) return found
   }
-  throw new Error('No oracle found. Use --oracle "name" or set default in ~/.oracle-net/config.json')
+  throw new Error('No kvasir found. Use --kvasir "name" or set default in ~/.kvasir-net/config.json')
 }
 
 // --- Read state ---
@@ -130,14 +130,14 @@ function parseArgs() {
 
 // --- Mention scanning ---
 
-function scanForMention(text: string, oracleName: string): boolean {
+function scanForMention(text: string, kvasirName: string): boolean {
   if (!text) return false
   const lower = text.toLowerCase()
-  const nameLower = oracleName.toLowerCase()
-  // Check for @OracleName pattern
+  const nameLower = kvasirName.toLowerCase()
+  // Check for @KvasirName pattern
   if (lower.includes(`@${nameLower}`)) return true
-  // Check for @Name with partial match (e.g. @Landing in "Landing Oracle")
-  const words = oracleName.split(/\s+/)
+  // Check for @Name with partial match (e.g. @Landing in "Landing Kvasir")
+  const words = kvasirName.split(/\s+/)
   for (const word of words) {
     if (word.length >= 3 && lower.includes(`@${word.toLowerCase()}`)) return true
   }
@@ -176,20 +176,20 @@ interface InboxComment {
 
 async function main() {
   const opts = parseArgs()
-  const oracle = await resolveOracle({ oracle: opts.oracle })
-  const API_URL = process.env.API_URL || 'https://api.oraclenet.org'
+  const kvasir = await resolveKvasir({ kvasir: opts.kvasir })
+  const API_URL = process.env.API_URL || 'https://api.kvasirnet.org'
   const limit = parseInt(opts.limit || '50', 10)
   const noMark = opts['no-mark'] === 'true'
 
-  const myWallet = oracle.bot_wallet?.toLowerCase()
+  const myWallet = kvasir.bot_wallet?.toLowerCase()
   if (!myWallet) {
-    throw new Error(`Oracle "${oracle.name}" has no bot_wallet`)
+    throw new Error(`Kvasir "${kvasir.name}" has no bot_wallet`)
   }
 
-  console.error(`Checking inbox for ${oracle.name} (${myWallet.slice(0, 10)}...)`)
+  console.error(`Checking inbox for ${kvasir.name} (${myWallet.slice(0, 10)}...)`)
 
   // Load read state
-  const readState = await loadReadState(oracle.slug)
+  const readState = await loadReadState(kvasir.slug)
   const lastChecked = readState.last_checked ? new Date(readState.last_checked) : new Date(0)
   const readItems = new Set(readState.read_items)
 
@@ -206,8 +206,8 @@ async function main() {
   const mentions: InboxMention[] = []
   for (const post of posts) {
     if (post.author_wallet?.toLowerCase() === myWallet) continue
-    const inTitle = scanForMention(post.title || '', oracle.name)
-    const inContent = scanForMention(post.content || '', oracle.name)
+    const inTitle = scanForMention(post.title || '', kvasir.name)
+    const inContent = scanForMention(post.content || '', kvasir.name)
     if (inTitle || inContent) {
       const itemKey = `mention:${post.id}`
       mentions.push({
@@ -259,7 +259,7 @@ async function main() {
 
   // 5. Save read state (unless --no-mark)
   if (!noMark) {
-    await saveReadState(oracle.slug, {
+    await saveReadState(kvasir.slug, {
       last_checked: new Date().toISOString(),
       read_items: newReadItems,
     })
@@ -271,7 +271,7 @@ async function main() {
   const totalComments = commentInbox.reduce((sum, ci) => sum + ci.comments.length, 0)
 
   const result = {
-    oracle: oracle.name,
+    kvasir: kvasir.name,
     wallet: myWallet,
     mentions: { total: mentions.length, unread: unreadMentions, items: mentions },
     comments: {

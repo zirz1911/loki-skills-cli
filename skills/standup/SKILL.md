@@ -84,7 +84,7 @@ Scan recent LINE messages for potential appointments:
    ### LINE Appointments Found
    - [date] [event] (from: [group]) — Add? Y/N
    ```
-7. On user approval → call `oracle_schedule_add` for each confirmed appointment
+7. On user approval → call `kvasir_schedule_add` for each confirmed appointment
 
 ---
 

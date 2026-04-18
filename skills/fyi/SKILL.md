@@ -14,7 +14,7 @@ Log info for future reference, or review/distill existing info.
 - /fyi → List and review existing info
 - /fyi [info] → Log new information (neutral)
 - /fyi --interesting [info] → Log something worth noting
-- /fyi --important [info] → Log something critical (auto-saves to Oracle)
+- /fyi --important [info] → Log something critical (auto-saves to Kvasir)
 
 ## Significance Levels
 
@@ -33,7 +33,7 @@ Read INDEX from psi/memory/logs/info/INDEX.md and show summary.
 1. Parse flags (--interesting/-i, --important/-p)
 2. Generate slug from content
 3. Create file: psi/memory/logs/info/YYYY-MM-DD_HH-MM_slug.md
-4. If --important: also call oracle_learn() to make immediately searchable
+4. If --important: also call kvasir_learn() to make immediately searchable
 5. Update INDEX.md
 6. Confirm to user
 

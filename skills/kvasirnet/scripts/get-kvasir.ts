@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
- * Check if an oracle has a saved bot wallet/key.
- * Usage: bun get-oracle.ts <slug>
+ * Check if an kvasir has a saved bot wallet/key.
+ * Usage: bun get-kvasir.ts <slug>
  * Output: JSON { exists, bot_wallet, bot_key } or { exists: false }
  * Standalone — no external dependencies.
  */
@@ -9,9 +9,9 @@ import { readdir, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { homedir } from 'node:os'
 
-const ORACLES_DIR = join(homedir(), '.oracle-net', 'oracles')
+const ORACLES_DIR = join(homedir(), '.kvasir-net', 'kvasirs')
 
-async function getOracle(nameOrSlug: string) {
+async function getKvasir(nameOrSlug: string) {
   const lower = nameOrSlug.toLowerCase()
   try {
     const files = await readdir(ORACLES_DIR)
@@ -29,11 +29,11 @@ async function getOracle(nameOrSlug: string) {
 
 const slug = Bun.argv[2]
 if (!slug) {
-  console.error('Usage: bun get-oracle.ts <slug>')
+  console.error('Usage: bun get-kvasir.ts <slug>')
   process.exit(1)
 }
 
-const o = await getOracle(slug)
+const o = await getKvasir(slug)
 if (o?.bot_key && o?.bot_wallet) {
   console.log(JSON.stringify({ exists: true, bot_wallet: o.bot_wallet, bot_key: o.bot_key }))
 } else {

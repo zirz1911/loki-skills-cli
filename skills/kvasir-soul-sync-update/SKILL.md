@@ -1,11 +1,11 @@
 ---
 installer: loki-skills-cli v1.0.0
-origin: Lokkji — Loki Oracle — zirz1911
-name: oracle-soul-sync-update
-description: ซิงค์ Oracle skills กับ family version ล่าสุด ใช้เมื่อพูดว่า soul-sync, sync, calibrate, update หรือก่อน /awaken
+origin: Lokkji — Loki Kvasir — zirz1911
+name: kvasir-soul-sync-update
+description: ซิงค์ Kvasir skills กับ family version ล่าสุด ใช้เมื่อพูดว่า soul-sync, sync, calibrate, update หรือก่อน /awaken
 ---
 
-# /oracle-soul-sync-update
+# /kvasir-soul-sync-update
 
 > "ซิงค์ soul กับ loki-skills ของตัวเอง"
 
@@ -14,9 +14,9 @@ All-in-one skill: `/soul-sync` + `/calibrate` + `/update` combined.
 ## Usage
 
 ```
-/oracle-soul-sync-update           # Check version and update
-/oracle-soul-sync-update --check   # Only check, don't update
-/oracle-soul-sync-update --cleanup # Uninstall first, then reinstall (removes old skills)
+/kvasir-soul-sync-update           # Check version and update
+/kvasir-soul-sync-update --check   # Only check, don't update
+/kvasir-soul-sync-update --cleanup # Uninstall first, then reinstall (removes old skills)
 ```
 
 ## Step 0: Timestamp
@@ -107,8 +107,8 @@ gh api repos/zirz1911/loki-skills-cli/commits --jq '.[0:5] | .[] | "\(.sha[0:7])
 
 | Command | Action |
 |---------|--------|
-| `/oracle-soul-sync-update` | Check and sync |
-| `/oracle-soul-sync-update --cleanup` | Uninstall + reinstall (removes old) |
+| `/kvasir-soul-sync-update` | Check and sync |
+| `/kvasir-soul-sync-update --cleanup` | Uninstall + reinstall (removes old) |
 | `/awaken` | Full awakening (calls this first) |
 
 ---

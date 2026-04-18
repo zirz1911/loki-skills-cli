@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// Query schedule via Oracle HTTP API (backed by Drizzle DB)
+// Query schedule via Kvasir HTTP API (backed by Drizzle DB)
 // Usage: bun query.ts [filter]
 // Filters: today, tomorrow, week, month, march, <keyword>
 export {};
@@ -79,7 +79,7 @@ try {
   const res = await fetch(`${API}/api/schedule?${params}`);
   if (!res.ok) {
     console.error(`API error: ${res.status} ${res.statusText}`);
-    console.error("Is the Oracle server running? Start with: bun src/server.ts");
+    console.error("Is the Kvasir server running? Start with: bun src/server.ts");
     process.exit(1);
   }
 
@@ -119,8 +119,8 @@ try {
   console.log(`\n📄 \`ψ/inbox/schedule.md\``);
 } catch (e: any) {
   if (e.code === "ConnectionRefused" || e.message?.includes("fetch")) {
-    console.error("Cannot connect to Oracle API at " + API);
-    console.error("Start the server: cd oracle-v2 && bun src/server.ts");
+    console.error("Cannot connect to Kvasir API at " + API);
+    console.error("Start the server: cd kvasir-v2 && bun src/server.ts");
   } else {
     console.error("Error:", e.message);
   }

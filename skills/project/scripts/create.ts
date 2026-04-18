@@ -40,7 +40,7 @@ if (!existsSync(`${localPath}/.git`)) {
 
 // 4. Create README if missing
 if (!existsSync(`${localPath}/README.md`)) {
-  await Bun.write(`${localPath}/README.md`, `# ${name}\n\nCreated by Oracle Open Framework\n`);
+  await Bun.write(`${localPath}/README.md`, `# ${name}\n\nCreated by Kvasir Open Framework\n`);
 }
 
 // 5. Initial commit if needed
