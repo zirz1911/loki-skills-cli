@@ -10,7 +10,7 @@ ROOT="$(pwd)"
 TODAY=$(date +%Y-%m-%d)
 TIME=$(date +%H%M)
 DATE_PATH=$(date "+%Y-%m/%d")
-mkdir -p "$ROOT/ψ/memory/retrospectives/$DATE_PATH"
+mkdir -p "$ROOT/Kvasir/memory/retrospectives/$DATE_PATH"
 ```
 
 ## Step 1: Launch 5 Parallel Agents
@@ -48,7 +48,7 @@ Return: Files modified summary, architectural changes, risk areas
 ### Agent 3: Session Timeline Reconstruction
 ```
 Reconstruct the session timeline:
-- Read ψ/memory/logs/ for today
+- Read Kvasir/memory/logs/ for today
 - Check git commit timestamps
 - Identify session phases (start, middle, end)
 - Map activities to times
@@ -71,7 +71,7 @@ Return: Key patterns, learnings, mistakes, reusable solutions
 ```
 Search Kvasir for related context:
 - kvasir_search("[session focus]")
-- Check ψ/memory/learnings/ for similar topics
+- Check Kvasir/memory/learnings/ for similar topics
 - Find past retrospectives on similar work
 - What did we learn before?
 
@@ -82,7 +82,7 @@ Return: Related learnings, past insights, patterns to apply
 
 After all agents return, main agent compiles into full retrospective:
 
-**Location**: `ψ/memory/retrospectives/$DATE_PATH/${TIME}_[slug].md`
+**Location**: `Kvasir/memory/retrospectives/$DATE_PATH/${TIME}_[slug].md`
 
 Include all standard sections PLUS:
 - Deep git analysis (from Agent 1)
@@ -93,7 +93,7 @@ Include all standard sections PLUS:
 
 ## Step 3: Write Lesson Learned
 
-**Location**: `ψ/memory/learnings/${TODAY}_[slug].md`
+**Location**: `Kvasir/memory/learnings/${TODAY}_[slug].md`
 
 With --deep, lesson learned should be more comprehensive:
 - Multiple patterns identified
@@ -113,6 +113,6 @@ kvasir_learn({
 ## Step 5: Commit
 
 ```bash
-git add ψ/memory/retrospectives/ ψ/memory/learnings/
+git add Kvasir/memory/retrospectives/ Kvasir/memory/learnings/
 git commit -m "rrr: deep analysis - [slug]"
 ```

@@ -116,7 +116,7 @@ try {
   }
 
   // Show ground truth reference
-  console.log(`\n📄 \`ψ/inbox/schedule.md\``);
+  console.log(`\n📄 \`Kvasir/inbox/schedule.md\``);
 } catch (e: any) {
   if (e.code === "ConnectionRefused" || e.message?.includes("fetch")) {
     console.error("Cannot connect to Kvasir API at " + API);

@@ -45,7 +45,7 @@ Upcoming (5 events)
 │ Mar 10 │ 15:00 │ นัดอ.เศรษฐ์ (ที่คลินิก)                │
 └────────┴───────┴──────────────────────────────────┘
 
-📄 `~/.kvasir/ψ/inbox/schedule.md`
+📄 `~/.kvasir/Kvasir/inbox/schedule.md`
 ```
 
 Rules:
@@ -69,4 +69,4 @@ GET /api/schedule?status=all              → include done/cancelled
 
 - `scripts/query.ts` - Query script (hits Kvasir API)
 - Kvasir DB: `~/.kvasir/kvasir.db` → `schedule` table
-- Auto-export: `~/.kvasir/ψ/inbox/schedule.md` (generated on write)
+- Auto-export: `~/.kvasir/Kvasir/inbox/schedule.md` (generated on write)

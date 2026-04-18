@@ -14,7 +14,7 @@ if (!slug || !target) {
 const ROOT = getRoot();
 const { incubateDir } = getPaths(ROOT);
 
-const incubatePath = join(ROOT, "ψ/incubate", slug);
+const incubatePath = join(ROOT, "Kvasir/incubate", slug);
 
 if (!existsSync(incubatePath)) {
   console.error(`Not found: ${incubatePath}`);

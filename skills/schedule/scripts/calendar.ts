@@ -5,7 +5,7 @@ import { existsSync, realpathSync } from "fs";
 import { join } from "path";
 
 const ROOT = process.env.ROOT || process.cwd();
-const psiPath = join(ROOT, "ψ");
+const psiPath = join(ROOT, "Kvasir");
 const psi = existsSync(psiPath) ? realpathSync(psiPath) : psiPath;
 const scheduleFile = join(psi, "inbox", "schedule.md");
 

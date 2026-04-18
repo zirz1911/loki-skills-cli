@@ -2,7 +2,7 @@
 // save-learning.ts - Save YouTube transcript to learning file
 // Usage: bun save-learning.ts <title> <url> <video_id> <transcript> [cc_text]
 //
-// Creates markdown file in ψ/memory/learnings/
+// Creates markdown file in Kvasir/memory/learnings/
 
 import { existsSync, mkdirSync, appendFileSync } from "fs";
 import { dirname, join } from "path";
@@ -40,10 +40,10 @@ const slug = title
   .slice(0, 50);
 
 // Ensure unique filename
-let learningFile = join(ROOT, `ψ/memory/learnings/${date}_${slug}.md`);
+let learningFile = join(ROOT, `Kvasir/memory/learnings/${date}_${slug}.md`);
 let count = 1;
 while (existsSync(learningFile)) {
-  learningFile = join(ROOT, `ψ/memory/learnings/${date}_${slug}-${count}.md`);
+  learningFile = join(ROOT, `Kvasir/memory/learnings/${date}_${slug}-${count}.md`);
   count++;
 }
 

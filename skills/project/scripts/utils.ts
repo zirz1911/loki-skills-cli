@@ -15,7 +15,7 @@ export function getRoot(): string {
 }
 
 export function getPaths(root: string) {
-  const psiPath = join(root, "ψ");
+  const psiPath = join(root, "Kvasir");
   const psi = existsSync(psiPath) ? realpathSync(psiPath) : psiPath;
   return {
     slugsFile: join(psi, "memory", "resonance", "slugs.yaml"),

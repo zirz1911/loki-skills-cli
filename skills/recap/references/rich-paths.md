@@ -16,7 +16,7 @@ MODIFIED=$(git status --short 2>/dev/null | wc -l)
 CONFLICTS=$(git diff --name-only --diff-filter=U 2>/dev/null | wc -l)
 
 # Focus file
-FOCUS_FILE="$ROOT/ψ/inbox/focus-agent-main.md"
+FOCUS_FILE="$ROOT/Kvasir/inbox/focus-agent-main.md"
 if [ -f "$FOCUS_FILE" ]; then
   FOCUS_STATE=$(head -1 "$FOCUS_FILE" | sed 's/STATE: //')
   FOCUS_MTIME=$(stat -f%m "$FOCUS_FILE" 2>/dev/null)
@@ -28,11 +28,11 @@ else
 fi
 
 # Activity log
-ACTIVITY_LOG="$ROOT/ψ/memory/logs/activity.log"
+ACTIVITY_LOG="$ROOT/Kvasir/memory/logs/activity.log"
 [ -f "$ACTIVITY_LOG" ] && LAST_ACTIVITY=$(tail -1 "$ACTIVITY_LOG" | cut -d'|' -f3 | xargs)
 
 # Latest retro
-LATEST_RETRO=$(find "$ROOT/ψ/memory/retrospectives" -name "*.md" -type f 2>/dev/null | grep -v CLAUDE | sort -r | head -1)
+LATEST_RETRO=$(find "$ROOT/Kvasir/memory/retrospectives" -name "*.md" -type f 2>/dev/null | grep -v CLAUDE | sort -r | head -1)
 ```
 
 ## Detection Precedence (In Order)
@@ -307,7 +307,7 @@ Commit first? Or reset?
 
 ## Board
 
-Hot tracks: [from ψ/inbox/tracks/ or "None"]
+Hot tracks: [from Kvasir/inbox/tracks/ or "None"]
 
 ---
 
@@ -319,14 +319,14 @@ What's next?
 **Data gathering for TRANSITION**:
 ```bash
 # Get session summary from handoff (if exists)
-HANDOFF=$(ls -t "$ROOT/ψ/inbox/handoff/"*.md 2>/dev/null | head -1)
+HANDOFF=$(ls -t "$ROOT/Kvasir/inbox/handoff/"*.md 2>/dev/null | head -1)
 [ -f "$HANDOFF" ] && grep -A5 "## What We Did" "$HANDOFF" | head -6
 
 # Get last commit
 git -C "$ROOT" log -1 --oneline
 
 # Get hot tracks
-ls "$ROOT/ψ/inbox/tracks/"*.md 2>/dev/null | head -3
+ls "$ROOT/Kvasir/inbox/tracks/"*.md 2>/dev/null | head -3
 ```
 
 ---

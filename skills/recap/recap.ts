@@ -18,8 +18,8 @@ try {
 } catch {}
 const lastCommit = (await $`git log --oneline -1`.text()).trim().slice(8, 68);
 
-// Resolve ψ symlink (used for focus + schedule)
-const psi = existsSync("ψ") ? realpathSync("ψ") : "ψ";
+// Resolve Kvasir symlink (used for focus + schedule)
+const psi = existsSync("Kvasir") ? realpathSync("Kvasir") : "Kvasir";
 
 // Focus state
 let focusState = "none";
@@ -43,7 +43,7 @@ if (existsSync(scheduleFile)) {
 }
 
 // Latest retro and handoff
-const monthDir = `ψ/memory/retrospectives/${new Date().toISOString().slice(0, 7)}`;
+const monthDir = `Kvasir/memory/retrospectives/${new Date().toISOString().slice(0, 7)}`;
 let latestRetro = "none";
 let latestHandoff = "none";
 
@@ -54,7 +54,7 @@ try {
 } catch {}
 
 try {
-  const handoffs = (await $`ls -t ψ/inbox/handoff/*.md 2>/dev/null`.text()).trim().split('\n');
+  const handoffs = (await $`ls -t Kvasir/inbox/handoff/*.md 2>/dev/null`.text()).trim().split('\n');
   const handoff = handoffs.find(f => !f.includes('CLAUDE'));
   if (handoff) latestHandoff = handoff.split('/').pop() || "none";
 } catch {}

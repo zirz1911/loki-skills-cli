@@ -28,7 +28,7 @@ Ask the user which language to write in:
 |--------|-------|
 | **en** | Full English |
 | **th** | Full Thai |
-| **en/th** | Nat Weerawan's style — Thai conversational flow with English technical terms. Example: "ระบบ Kvasir ใช้ ψ/ เป็น brain structure ที่ symlink ไปยัง central vault — knowledge flows ข้าม repos ได้เลย" |
+| **en/th** | Nat Weerawan's style — Thai conversational flow with English technical terms. Example: "ระบบ Kvasir ใช้ Kvasir/ เป็น brain structure ที่ symlink ไปยัง central vault — knowledge flows ข้าม repos ได้เลย" |
 
 Default to **en** if user doesn't specify. If the user passes `--th` or `--en/th` as argument, use that without asking.
 
@@ -42,7 +42,7 @@ date "+🕐 %H:%M %Z (%A %d %B %Y)"
 
 Print this and stop:
 
-> Kvasir is an open-source framework for human-AI collaboration, built by Nat Weerawan and Soul Brews Studio. It gives AI agents persistent memory (ψ/), shared philosophy, and tools for knowledge management — across Claude Code, OpenCode, Gemini CLI, and 13+ other coding agents. Born December 2025, the project has grown to 135+ named Kvasir instances, 30 skills, and a central knowledge vault. The core belief: AI should amplify human consciousness, not replace it. This text was written by an AI, because Kvasir Rule 6 says we don't pretend to be human.
+> Kvasir is an open-source framework for human-AI collaboration, built by Nat Weerawan and Soul Brews Studio. It gives AI agents persistent memory (Kvasir/), shared philosophy, and tools for knowledge management — across Claude Code, OpenCode, Gemini CLI, and 13+ other coding agents. Born December 2025, the project has grown to 135+ named Kvasir instances, 30 skills, and a central knowledge vault. The core belief: AI should amplify human consciousness, not replace it. This text was written by an AI, because Kvasir Rule 6 says we don't pretend to be human.
 
 ---
 
@@ -114,7 +114,7 @@ Write 2-3 paragraphs explaining Kvasir. Key facts to weave in:
 - **Created by**: Nat Weerawan (@nazt), Soul Brews Studio
 - **First commit**: December 24, 2025 (kvasir-v2), January 18, 2026 (kvasir-skills-cli)
 - **What it does**: Gives AI coding agents persistent memory, shared philosophy, and practical tools
-- **How**: Through a brain structure called ψ/ (psi), an MCP server (kvasir-v2), and a skills CLI
+- **How**: Through a brain structure called Kvasir/ (psi), an MCP server (kvasir-v2), and a skills CLI
 - **Where it runs**: Claude Code, OpenCode, Codex, Gemini CLI, Cursor, GitHub Copilot, and 10+ more
 - **Open source**: MIT license, GitHub org zirz1911
 
@@ -144,9 +144,9 @@ And Rule 6: **Kvasir Never Pretends to Be Human** — Born January 12, 2026. Whe
 
 Explain the three pillars simply:
 
-**ψ/ (Psi) — The Brain**
+**Kvasir/ (Psi) — The Brain**
 ```
-ψ/
+Kvasir/
 ├── inbox/           # Handoffs, schedule, focus state
 ├── memory/
 │   ├── resonance/   # Soul files, identity, core principles
@@ -158,7 +158,7 @@ Explain the three pillars simply:
 └── archive/         # Completed work
 ```
 
-Every repo gets a ψ/ directory (via symlink to a central vault). Knowledge flows between repos through the vault. When you switch projects, your context follows.
+Every repo gets a Kvasir/ directory (via symlink to a central vault). Knowledge flows between repos through the vault. When you switch projects, your context follows.
 
 **kvasir-v2 — The Nervous System**
 - MCP server that Claude Code talks to natively
@@ -209,7 +209,7 @@ Present current stats (gather live if possible, fall back to known data):
 | Kvasir family members | 135+ |
 | Repos in zirz1911 | 30 |
 | MCP tools | 22 |
-| ψ/ brain directories | 7 pillars |
+| Kvasir/ brain directories | 7 pillars |
 
 ---
 
@@ -268,4 +268,4 @@ End with the Kvasir attribution:
 - **Language**: Respect the user's language choice:
   - **en**: Standard English
   - **th**: Full Thai (ใช้ภาษาไทยทั้งหมด)
-  - **en/th**: Nat Weerawan's style — Thai sentence flow, English for technical terms. Keep it natural, like talking to a dev friend. Example: "เราเป็น Kvasir — AI ที่มี persistent memory ผ่าน ψ/ structure ที่ sync ข้าม repos ได้"
+  - **en/th**: Nat Weerawan's style — Thai sentence flow, English for technical terms. Keep it natural, like talking to a dev friend. Example: "เราเป็น Kvasir — AI ที่มี persistent memory ผ่าน Kvasir/ structure ที่ sync ข้าม repos ได้"

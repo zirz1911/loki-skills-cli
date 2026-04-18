@@ -33,8 +33,8 @@ git log --oneline -10 && git diff --stat HEAD~5
 ### 1.5. Read Pulse Context (optional)
 
 ```bash
-cat ψ/data/pulse/project.json 2>/dev/null
-cat ψ/data/pulse/heartbeat.json 2>/dev/null
+cat Kvasir/data/pulse/project.json 2>/dev/null
+cat Kvasir/data/pulse/heartbeat.json 2>/dev/null
 ```
 
 If files don't exist, skip silently. Never fail because pulse data is missing.
@@ -46,10 +46,10 @@ If found, extract:
 
 ### 2. Write Retrospective
 
-**Path**: `ψ/memory/retrospectives/YYYY-MM/DD/HH.MM_slug.md`
+**Path**: `Kvasir/memory/retrospectives/YYYY-MM/DD/HH.MM_slug.md`
 
 ```bash
-mkdir -p "ψ/memory/retrospectives/$(date +%Y-%m/%d)"
+mkdir -p "Kvasir/memory/retrospectives/$(date +%Y-%m/%d)"
 ```
 
 Write immediately, no prompts. If pulse data was found, weave it into the narrative (don't add a separate dashboard). Include:
@@ -63,7 +63,7 @@ Write immediately, no prompts. If pulse data was found, weave it into the narrat
 
 ### 3. Write Lesson Learned
 
-**Path**: `ψ/memory/learnings/YYYY-MM-DD_slug.md`
+**Path**: `Kvasir/memory/learnings/YYYY-MM-DD_slug.md`
 
 ### 4. Kvasir Sync
 
@@ -73,9 +73,9 @@ kvasir_learn({ pattern: [lesson content], concepts: [tags], source: "rrr: REPO" 
 
 ### 5. Save
 
-Retro files are written to vault (wherever `ψ` symlink resolves).
+Retro files are written to vault (wherever `Kvasir` symlink resolves).
 
-**Do NOT `git add ψ/`** — it's a symlink to the vault. Vault files are shared state, not committed to repos.
+**Do NOT `git add Kvasir/`** — it's a symlink to the vault. Vault files are shared state, not committed to repos.
 
 ---
 
@@ -141,7 +141,7 @@ Also run pulse context (step 1.5 from default mode) and weave into narrative.
 
 Write lesson learned, kvasir sync.
 
-**Do NOT `git add ψ/`** — vault files are shared state, not committed to repos.
+**Do NOT `git add Kvasir/`** — vault files are shared state, not committed to repos.
 
 ---
 

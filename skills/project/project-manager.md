@@ -14,7 +14,7 @@ Supports both formats:
 - **Short**: `repo-name` (fallback) — e.g., `claude-mem`
 
 ```yaml
-# ψ/memory/slugs.yaml
+# Kvasir/memory/slugs.yaml
 thedotmack/claude-mem: ~/Code/github.com/thedotmack/claude-mem
 laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
 ```
@@ -36,8 +36,8 @@ laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
 
 ```
 /project search    → 🔍 Search repos (local ghq first, then GitHub API)
-/project learn     → 📚 Study external repo (ψ/learn/)
-/project incubate  → 🌱 Work on project (ψ/incubate/, auto-create if needed)
+/project learn     → 📚 Study external repo (Kvasir/learn/)
+/project incubate  → 🌱 Work on project (Kvasir/incubate/, auto-create if needed)
 /project spinoff   → 🎓 Graduate to own repo
 /project reunion   → 🤝 Sync learnings + offload
 /project offload   → 📤 Just remove symlinks
@@ -111,9 +111,9 @@ laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
 ## Reunion Pattern
 
 1. **Connect** → `ghq get -u` (sync via ghq, not git pull)
-2. **Scan** → Find `ψ/memory/*.md`, `learnings/`, `retrospectives/`, `docs/`
-3. **Manifest** → Write to `ψ/memory/logs/index-YYYY-MM-DD-slug.json`
-4. **Log** → Write to `ψ/memory/logs/reunion-YYYY-MM-DD.log`
+2. **Scan** → Find `Kvasir/memory/*.md`, `learnings/`, `retrospectives/`, `docs/`
+3. **Manifest** → Write to `Kvasir/memory/logs/index-YYYY-MM-DD-slug.json`
+4. **Log** → Write to `Kvasir/memory/logs/reunion-YYYY-MM-DD.log`
 5. **Offload** → Remove symlink (unless `--keep`)
 
 ## Index Pattern
@@ -127,15 +127,15 @@ laris-co/kvasir-v2: ~/Code/github.com/laris-co/kvasir-v2
 ## Offload Pattern
 
 - Remove symlink only (ghq keeps repo)
-- Log to `ψ/memory/logs/offload-YYYY-MM-DD.log`
+- Log to `Kvasir/memory/logs/offload-YYYY-MM-DD.log`
 - Can restore: `/project learn [slug]` or `/project incubate [slug]`
 
 ## Files
 
 - `scripts/search.sh` - Search repos (local ghq → GitHub API)
 - `scripts/resolve-slug.sh` - Shared slug resolution (owner/repo + short)
-- `scripts/learn.sh` - Clone + symlink to ψ/learn/
-- `scripts/incubate.sh` - Clone (or create) + symlink to ψ/incubate/
+- `scripts/learn.sh` - Clone + symlink to Kvasir/learn/
+- `scripts/incubate.sh` - Clone (or create) + symlink to Kvasir/incubate/
 - `scripts/spinoff.sh` - Move to external repo
 - `scripts/reunion.sh` - Sync learnings + optional offload
 - `scripts/offload.sh` - Remove symlinks, keep ghq

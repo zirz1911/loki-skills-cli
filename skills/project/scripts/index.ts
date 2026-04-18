@@ -26,7 +26,7 @@ const ourUser = await $`gh api user --jq '.login'`.text().catch(() => "");
 const orgPattern = new RegExp(`github.com/(${[...ourOrgs.trim().split("\n"), ourUser.trim()].filter(Boolean).join("|")})/`);
 
 function scoreFile(file: string): number {
-  if (file.includes("/ψ/") && file.endsWith(".md")) return 1;
+  if (file.includes("/Kvasir/") && file.endsWith(".md")) return 1;
   if (orgPattern.test(file)) {
     if (file.includes("/retrospectives/") || file.includes("/learnings/") || file.includes("/memory/")) return 1;
   }

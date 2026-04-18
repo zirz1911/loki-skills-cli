@@ -15,8 +15,8 @@ const month = now.toISOString().slice(0, 7);
 console.log("# RECAP (Rich)");
 console.log(`\n${time} | ${date}\n\n---\n`);
 
-// Resolve ψ symlink (used for focus + schedule)
-const psiPath = join(ROOT, "ψ");
+// Resolve Kvasir symlink (used for focus + schedule)
+const psiPath = join(ROOT, "Kvasir");
 const psi = existsSync(psiPath) ? realpathSync(psiPath) : psiPath;
 
 // Focus
@@ -50,7 +50,7 @@ console.log(await $`git -C ${ROOT} log --oneline -3`.text());
 
 // Tracks
 console.log("## TRACKS");
-const tracksDir = join(ROOT, "ψ/inbox/tracks");
+const tracksDir = join(ROOT, "Kvasir/inbox/tracks");
 if (existsSync(tracksDir)) {
   const tracks = readdirSync(tracksDir)
     .filter((f) => f.endsWith(".md") && !f.includes("INDEX") && !f.includes("CLAUDE"))
@@ -65,7 +65,7 @@ if (existsSync(tracksDir)) {
 
 // Latest retro
 console.log("\n---\n\n## LAST SESSION");
-const retroDir = join(ROOT, `ψ/memory/retrospectives/${month}`);
+const retroDir = join(ROOT, `Kvasir/memory/retrospectives/${month}`);
 if (existsSync(retroDir)) {
   const days = readdirSync(retroDir).filter((d) => !d.startsWith(".")).sort().reverse();
   for (const day of days) {
@@ -81,7 +81,7 @@ if (existsSync(retroDir)) {
 }
 
 // Handoff
-const handoffDir = join(ROOT, "ψ/inbox/handoff");
+const handoffDir = join(ROOT, "Kvasir/inbox/handoff");
 if (existsSync(handoffDir)) {
   const handoffs = readdirSync(handoffDir).filter((f) => f.endsWith(".md") && !f.includes("CLAUDE")).sort().reverse();
   if (handoffs.length) {
